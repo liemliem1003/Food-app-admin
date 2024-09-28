@@ -1,0 +1,161 @@
+// .middleItem{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+.left-navigation{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 345px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left-navigation-header{
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.main-navigation{
+    margin-top: 24px;
+}
+
+.main-navigation .navigation-option{
+    margin: 15px 0;
+    cursor: pointer;
+    height: 64px;
+    width: 252px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #737791;
+}
+
+
+
+.main-navigation .navigation-option img{
+    margin-right: 24px;
+    margin-left: 24px;
+    width: 32px;
+    height: 32px;
+}
+
+.main-navigation .selected{
+    border-radius: 16px;
+    background-color: #FF7A1C;
+    color: white;
+    transition: 0.3s;
+}
+
+
+.left-navigation-header .brand-name{
+    font-size: 36px;
+    font-weight: 700;
+    margin-left: 24px;
+}
+
+.top-navigation{
+    z-index: 1;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.top-navigation .page-name{
+    font-weight: bold;
+    font-size: 36px;
+    margin-left: 380px;
+
+}
+
+.top-navigation .search{
+    position: relative;
+    margin-left: 202px;
+}
+
+.top-navigation .search input{
+    width: 385px;
+    padding: 16.5px 64px 16.5px 64px;
+    font-size: 18px;
+    background-color: #F9FAFB;
+    border: none;
+    border-radius: 16px;
+}
+
+.top-navigation .search input::placeholder{
+    margin-left: 20px;
+    color: rebeccapurple;
+}
+
+.top-navigation .search img{
+    position: absolute;
+    left: 24px;
+    top: 14px;
+}
+
+.top-navigation .notification{
+    position: relative;
+    margin-left: 273px;
+    height: 48px;
+    width: 48px;
+    background-color: #FFFAF1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.top-navigation .notification .red-dot{
+    width: 6.6px;
+    height: 6.6px;
+    background-color: #EB5757;
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+.top-navigation .account{
+    display: flex;
+    margin-left: 24px;
+}
+.top-navigation .account .avatar{
+    border-radius: 16px;
+    height: 60px;
+    width: 60px;
+}
+
+.top-navigation .account .account-info{
+    align-items: center;
+    margin: auto;
+    margin-left: 20px;
+}
+
+.top-navigation .account .account-info .name{
+    color: #151D48;
+    font-weight: bold;
+    font-size: 16px;
+}
+.top-navigation .account .account-info .role{
+    font-size: 14px;
+    color: #737791;
+}
+
+.top-navigation .account .icon{
+    margin: auto 20px;
+    height: 16px;
+    width: 16px;
+}

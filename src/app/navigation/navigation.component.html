@@ -1,0 +1,37 @@
+<div class="left-navigation">
+    <div class="left-navigation-header">
+        <img src="/assets/Image/Navigation/Logo.png" alt class="logo">
+        <span class="brand-name">FooDPT</span>
+    </div>
+    <div class="main-navigation">
+        <div
+            [class]="i==selectedNavigation? 'navigation-option selected':'navigation-option'"
+            *ngFor="let item of navigationOption, let i = index"
+            (click)="ChangeSelectedNavigation(i)">
+            <img [src]="item.icon" alt>
+            <span>{{item.name}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="top-navigation">
+    <div class="page-name">
+        Dashboard
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search here">
+        <img src="/assets/Image/Navigation/SearchIcon.svg" alt>
+    </div>
+    <div class="notification">
+        <img src="/assets/Image/Navigation/Bell.png" alt class="logo">
+        <div class="red-dot"></div>
+    </div>
+    <div class="account">
+        <img src="/assets/Image/Navigation/Avatar.png" alt class="avatar">
+        <div class="account-info">
+            <div class="name">Musfiq</div>
+            <div class="role">Admin</div>
+        </div>
+        <img src="/assets/Image/Navigation/DownArrow.png" alt class="icon">
+    </div>
+</div>

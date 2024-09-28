@@ -1,0 +1,510 @@
+@font-face {
+    font-family: 'poppins-regular';
+    src: url('/assets/Fonts/Poppins/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.today-sales {
+    margin-top: 32px;
+    margin-left: 32px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 1px white;
+    width: 877px;
+}
+
+.today-sales .today-sales-header {
+    margin-top: 23px;
+    margin-left: 31px;
+    display: flex;
+
+}
+
+.today-sales .today-sales-header .text {
+    color: #05004E;
+    font-size: 20px;
+    font-family: 'poppins-regular';
+    font-weight: bold;
+}
+
+.today-sales .today-sales-header .text div {
+    color: #737791;
+    font-family: 'poppins';
+    font-size: 14px;
+}
+
+.today-sales button {
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 32px;
+    height: 40px;
+    width: 100px;
+    border: solid 2px #C3D3E2;
+    border-radius: 8px;
+    background-color: white;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.today-sales button img {
+    margin-right: 8px;
+}
+
+.today-sales .contents {
+    display: flex;
+    margin-top: 43px;
+    margin-bottom: 32px;
+}
+
+.today-sales .contents .content-item {
+    width: 180px;
+    height: 180px;
+    margin: auto;
+    border-radius: 18px;
+}
+
+.today-sales .contents .content-item .icon {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 8px;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.today-sales .contents .content-item .value {
+    color: #151D48;
+    font-size: 24px;
+    margin-top: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.today-sales .contents .content-item .title {
+    color: #425166;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+
+.today-sales .contents .content-item .description {
+    color: #4079ED;
+    font-size: 12px;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+
+.today-sales .contents .total-sales {
+    background-color: #FFE2E5;
+}
+
+.today-sales .contents .total-sales .icon {
+    background-color: #FA5A7D;
+}
+
+.today-sales .contents .total-orders {
+    background-color: #FFF4DE
+}
+
+.today-sales .contents .total-sales .icon {
+    background-color: #FF947A;
+}
+
+.today-sales .contents .products-sold {
+    background-color: #DCFCE7
+}
+
+.today-sales .contents .products-sold .icon {
+    background-color: #3CD856;
+}
+
+.today-sales .contents .new-costumers {
+    background-color: #F3E8FF
+}
+
+.today-sales .contents .new-costumers .icon {
+    background-color: #BF83FF;
+}
+
+.second-group-of-chart,
+.third-group-of-chart {
+    display: flex;
+}
+
+.total-revenue {
+    width: 645px;
+    margin-top: 32px;
+    margin-left: 32px;
+    margin-right: 30px;
+    background-color: white;
+    border: solid 1px white;
+    border-radius: 20px;
+}
+
+.total-revenue .total-revenue-header {
+    color: #05004E;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'poppins-regular';
+    margin-top: 26px;
+    margin-left: 26px;
+}
+
+.total-revenue .contents {
+    margin-top: 25px;
+    margin-left: 28px;
+}
+
+.total-revenue .contents .chart .rows .row {
+    display: flex;
+    margin: 8px 0;
+    align-items: center;
+
+}
+
+.total-revenue .contents .chart .rows .row .value {
+    width: 30px;
+    font-size: 12px;
+    color: #7B91B0;
+}
+
+.total-revenue .contents .chart .rows .row hr {
+    width: 550px;
+    height: 0px;
+    margin-left: 8px;
+    border: solid 1px #EFF1F3;
+}
+
+.total-revenue .contents .chart .cols {
+    margin: auto;
+    display: flex;
+    width: 540px;
+}
+
+.total-revenue .contents .chart .cols .col {
+    font-size: 12px;
+    margin: 0 auto;
+    color: #7B91B0;
+    position: relative;
+}
+
+.total-revenue .contents .chart .cols .col .col1,
+.total-revenue .contents .chart .cols .col .col2 {
+    position: absolute;
+    border-radius: 2px;
+    width: 12px;
+    bottom: 35.5px;
+}
+
+.total-revenue .contents .chart .cols .col .col1 {
+    margin-left: 10px;
+}
+
+.total-revenue .contents .chart .cols .col .col2 {
+    margin-left: 30px;
+
+}
+
+.total-revenue .contents .chart .description {
+    justify-content: center;
+    display: flex;
+    color: #222B45;
+    font-size: 12px;
+    font-family: 'poppins-regular';
+}
+
+.total-revenue .contents .chart .description .online-sale,
+.total-revenue .contents .chart .description .offline-sale {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+}
+
+.total-revenue .contents .chart .cols .col .col1,
+.total-revenue .contents .chart .description .online-sale .online-sale-dot {
+    background-color: #0095FF;
+
+}
+
+.total-revenue .contents .chart .cols .col .col2,
+.total-revenue .contents .chart .description .offline-sale .offline-sale-dot {
+    background-color: #00E096
+}
+
+.total-revenue .contents .chart .description .online-sale .online-sale-dot,
+.total-revenue .contents .chart .description .offline-sale .offline-sale-dot {
+    height: 11px;
+    width: 11px;
+    border-radius: 50%;
+    margin-right: 6px;
+
+}
+
+.taget-vs-reality {
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 32px;
+}
+
+.taget-vs-reality .taget-vs-reality-header {
+    color: #05004E;
+    font-family: 'poppins-regular';
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-left: 19px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.taget-vs-reality .chart {
+    display: flex;
+    height: 157px;
+}
+
+.taget-vs-reality .chart .chart-item {
+    margin-top: auto;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.taget-vs-reality .chart .chart-item .cols-group {
+    display: flex;
+}
+
+.taget-vs-reality .chart .chart-item .cols-group .col1,
+.taget-vs-reality .chart .chart-item .cols-group .col2 {
+    height: 40px;
+    width: 16px;
+    margin: auto 2px 0 2px;
+    border-radius: 4px;
+    // background-color: red;
+}
+
+.taget-vs-reality .chart .chart-item .cols-group .col1 {
+    background-color: #4AB58E;
+
+}
+
+.taget-vs-reality .chart .chart-item .cols-group .col2 {
+    background-color: #FFCF00;
+
+}
+
+
+.taget-vs-reality .chart .chart-item .col-name {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 10px;
+    color: #7B91B0;
+}
+
+.taget-vs-reality .summary {
+    margin: 7.5px 0;
+    display: flex;
+}
+
+.taget-vs-reality .summary img {
+    height: 17px;
+    width: 17px;
+    padding: 9px;
+    margin-left: 19px;
+    margin-right: 10px;
+}
+
+.taget-vs-reality .summary .group-info .name {
+    font-size: 12px;
+    color: #151D48;
+    font-weight: bold;
+}
+
+.taget-vs-reality .summary .group-info .description {
+    font-size: 10px;
+    color: #737791;
+}
+
+.taget-vs-reality .reality-sales.summary img {
+    background-color: #E2FFF3;
+}
+
+.taget-vs-reality .target-sales.summary img {
+    background-color: #FFF4DE;
+}
+
+.taget-vs-reality .summary .value {
+    margin: auto 0 auto 73px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.taget-vs-reality .reality-sales.summary .value {
+    color: #27AE60;
+}
+
+.taget-vs-reality .target-sales.summary .value {
+    color: #FFA412;
+}
+
+.top-products {
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 31px;
+    margin-top: 32px;
+    width: 645px;
+    border: solid 1px white;
+    margin-bottom: 45px;
+}
+
+.top-products .top-products-header {
+    color: #05004E;
+    margin-top: 23px;
+    margin-left: 26px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.top-products table {
+    width: 100%;
+}
+
+.top-products table td {
+    margin-left: 26px;
+    text-align: left;
+    padding: 20px;
+
+}
+
+.top-products table tbody tr td {
+    border: none;
+    border-top: solid 2px #EDF2F6;
+    position: relative;
+}
+
+.top-products table thead tr td {
+    color: #96A5B8;
+    font-size: 13px;
+}
+
+.top-products table tbody tr td {
+    color: #444A6D;
+    font-size: 14px;
+    font-weight: bold;
+    // margin: 18px 20px;
+}
+
+.top-products table tbody tr td.popularity div {
+    width: 180px;
+    height: 4px;
+    background-color: var(--bgColor);
+}
+
+.top-products table tbody tr td.popularity div::after {
+    content: "";
+    display: block;
+    width: var(--after-width);
+    background-color: var(--mainColor);
+    height: 4px;
+}
+
+.top-products table tbody tr .sales div {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color);
+    border: solid 2px var(--color);
+    background-color: var(--saleBgColor);
+    border-radius: 8px;
+    padding: 2px 10px;
+    font-weight: bold;
+}
+
+.volumn-vs-service-level {
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 32px;
+    margin-left: 32px;
+    margin-bottom: 45px;
+    width: 371px;
+}
+
+.volumn-vs-service-level .volumn-vs-service-level-header {
+    font-size: 20px;
+    color: #05004E;
+    margin-top: 20px;
+    margin-left: 24px;
+    margin-bottom: 24px;
+    font-weight: bold;
+}
+
+.volumn-vs-service-level .chart {
+    height: 168px;
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.volumn-vs-service-level .chart .chart-item {
+    background-color: #00E096;
+    height: var(--max-height);
+    margin: auto auto 0 auto;
+    width: 12px;
+}
+
+.volumn-vs-service-level .chart .chart-item::before {
+    content: "";
+    display: inline-block;
+    background-color: #0095FF;
+    height: var(--volume-height);
+    margin-bottom: 80px;
+    width: 12px;
+}
+
+.volumn-vs-service-level hr {
+    background-color: #EFF3F7;
+    height: 2px;
+    border: none;
+    margin-bottom: 16px;
+}
+
+.volumn-vs-service-level .description {
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+}
+
+.volumn-vs-service-level .description .dot {
+    width: 10px;
+    height: 10px;
+    margin-top: 6px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.volumn-vs-service-level .description .volumn,
+.volumn-vs-service-level .description .services {
+    display: flex;
+    color: #96A5B8;
+    padding: 0 20px;
+}
+
+.volumn-vs-service-level .description .volumn{
+    border-right: solid 2px #BDC9D3;
+}
+
+.volumn-vs-service-level .description .volumn .dot{
+    background-color: #0095FF;
+
+}
+
+.volumn-vs-service-level .description .services .dot{
+    background-color: #00E096;
+}
+
+
+.volumn-vs-service-level .description .value{
+    color: #222B45;
+    font-size: 14px;
+    font-weight: bold;
+}

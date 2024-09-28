@@ -1,0 +1,149 @@
+<div class="container">
+    <div class="today-sales">
+        <div class="today-sales-header">
+            <div class="text">Today's Sales
+                <div>Sales Summery</div>
+            </div>
+            <button>
+                <img src="assets/Image/Dashboard/ExportIcon.png" alt>
+                Export
+            </button>
+        </div>
+        <div class="contents">
+            <div [class]="item.class+' content-item'"
+                *ngFor="let item of todaySales">
+                <img [src]="item.icon" alt class="icon">
+                <div class="value">{{item.value}}</div>
+                <div class="title">{{item.title}}</div>
+                <div class="description">{{item.description}} from
+                    yesterday</div>
+            </div>
+        </div>
+    </div>
+    <div class="second-group-of-chart">
+        <div class="total-revenue">
+            <div class="total-revenue-header">Total Revenue</div>
+            <div class="contents">
+                <div class="chart">
+                    <div class="rows">
+                        <div class="row" *ngFor="let row of totalRevenue?.rows">
+                            <div class="value">{{row}}</div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="cols">
+                        <div class="col"
+                            *ngFor="let col of totalRevenue?.columns">
+                            <span>{{col?.colName}}</span>
+                            <div class="col1"
+                                [style]="'height: '+ col?.onlineSales/totalRevenue.maxValue*((18.4+8)*5) +'px'"></div>
+                            <div class="col2"
+                                [style]="'height: '+ col?.offlineSales/totalRevenue.maxValue*((18.4+8)*5) +'px'"></div>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <div class="online-sale">
+                            <div class="online-sale-dot"></div>
+                            <span>Online Sales</span>
+                        </div>
+                        <div class="offline-sale">
+                            <div class="offline-sale-dot"></div>
+                            <span>Offline Sales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="taget-vs-reality">
+            <div class="taget-vs-reality-header">Target vs Reality</div>
+            <div class="chart">
+                <div class="chart-item"
+                    *ngFor="let item of tagetVsReality?.options">
+                    <div class="cols-group">
+                        <div class="col1"
+                            [style]="'height:'+ item.reality/tagetVsReality.maxValue*133+'px'"></div>
+                        <div class="col2"
+                            [style]="'height:'+ item.target/tagetVsReality.maxValue*133+'px'"></div>
+                    </div>
+                    <div class="col-name">{{item.name}}</div>
+                </div>
+            </div>
+            <div class="reality-sales summary">
+                <img src="assets/Image/Dashboard/RealityIcon.png" alt
+                    class="icon">
+                <div class="group-info">
+                    <div class="name">Reality Sales</div>
+                    <div class="description">Global</div>
+                </div>
+                <div class="value">8.000</div>
+            </div>
+            <div class="target-sales summary">
+                <img src="assets/Image/Dashboard/TargetSalesIcon.png" alt
+                    class="icon">
+                <div class="group-info">
+                    <div class="name">Target Sales</div>
+                    <div class="description">Commercial</div>
+                </div>
+                <div class="value">8.000</div>
+            </div>
+        </div>
+    </div>
+    <div class="third-group-of-chart">
+        <div class="top-products">
+            <div class="top-products-header">Top Products</div>
+            <table CELLSPACING=0>
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Popularity</td>
+                        <td>Sales</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of topProducts, let i = index">
+                        <td class="no">0{{i}}</td>
+                        <td class="name">{{item.name}}</td>
+                        <td class="popularity">
+                            <div
+                                [style.--after-width]="180*item.popularity + 'px'"
+                                [style.--bgColor]="'#' + item.bgColor"
+                                [style.--mainColor]="'#' + item.mainColor"></div>
+                        </td>
+                        <td class="sales">
+                            <div
+                                [style.--color]="'#' + item.color"
+                                [style.--saleBgColor]="'#' + item.saleBgColor">{{item.sales*100}}%</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="volumn-vs-service-level">
+            <div class="volumn-vs-service-level-header">Volume vs Service Level</div>
+            <div class="chart">
+                <div class="chart-item" *ngFor="let item of volumeVsServiceLevel?.options"
+                    [style.--max-height]="(item.volume+item.service)/volumeVsServiceLevel.maxValue*100+'%'"
+                    [style.--volume-height]="item.volume/(item.volume+item.service)*100+'%'"
+                ></div>
+            </div>
+            <hr>
+            <div class="description">
+                <div class="volumn">
+                    <div class="dot"></div>
+                    <span>Volumn
+                        <br>
+                        <span class="value">1000</span>
+                    </span>
+                </div>
+                <div class="services">
+                    <div class="dot"></div>
+                    <span>Services
+                        <br>
+                        <span class="value">9000</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
