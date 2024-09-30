@@ -1,0 +1,168 @@
+<div class="container">
+    <div>
+        <div class="general-report customer-details">
+            <div class="report-header">
+                <div class="title">Customer Details</div>
+                <div class="group-button">
+                    <button class="filter">
+                        <img src="/assets/Image/SaleReport/Filter.png" alt>
+                        Filter
+                    </button>
+                    <button class="download">
+                        <img src="/assets/Image/SaleReport/Download.png" alt>
+                        Download
+                    </button>
+                </div>
+            </div>
+            <table CELLSPACING=0>
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Customer</td>
+                        <td>Date</td>
+                        <td>Invoiced Amount</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cutomerDetails">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>$ {{AddSpaceToNumber(item.amount)}}</td>
+                        <td class="status"
+                            [style.--color]="cutomerDetailsStatus[item.status].color">{{cutomerDetailsStatus[item.status].status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="general-report sales">
+            <div class="report-header">
+                <div class="title">Sales</div>
+                <div class="group-button">
+                    <button class="calendar-button">
+                        <img src="/assets/Image/SaleReport/CalendarIcon.png" alt
+                            class="calendar-icon">
+                        2022
+                        <img src="/assets/Image/SaleReport/WhiteDownArrow.png"
+                            alt class="down-arrow">
+                    </button>
+                    <button class="download">
+                        <img src="/assets/Image/SaleReport/Download.png" alt>
+                        Download
+                    </button>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="y-direction">
+                    <div class="item"
+                        *ngFor="let item of [].constructor(sale.numberOfRows+1), let i = index">
+                        ${{FormatNumber((sale.numberOfRows-i)*(sale.maxValue/sale.numberOfRows))}}
+                        <div class="y-line"></div>
+                    </div>
+                </div>
+                <div class="contents">
+                    <div class="item value1"
+                        *ngFor="let item of sale.options,let i = index"
+                        [style.--position-bottom]="(item.value1/sale.maxValue)*123+'px'"
+                        [style.--position-left]="NumberToFixed(426/11*i+1.5)+'px'"
+                        [style.--width]="
+                        i!=11
+                        ? WidthCalculation(426/11,((item.value1/sale.maxValue)-(sale.options[i+1]?.value1/sale.maxValue))*123)+'px'
+                        : 1 + 'px'"
+                        [style.--rotate]="DegreeCalculation(426/11,((item.value1/sale.maxValue)-(sale.options[i+1]?.value1/sale.maxValue))*123)+'deg'">
+                    </div>
+                    <div class="item value2"
+                        *ngFor="let item of sale.options,let i = index"
+                        [style.--position-bottom]="(item.value2/sale.maxValue)*123+'px'"
+                        [style.--position-left]="NumberToFixed(426/11*i+1.5)+'px'"
+                        [style.--width]="
+                        i!=11
+                        ? WidthCalculation(426/11,((item.value2/sale.maxValue)-(sale.options[i+1]?.value2/sale.maxValue))*123)+'px'
+                        : 1 + 'px'"
+                        [style.--rotate]="DegreeCalculation(426/11,((item.value2/sale.maxValue)-(sale.options[i+1]?.value2/sale.maxValue))*123)+'deg'">
+                    </div>
+                </div>
+                <div class="x-direction">
+                    <div class="item"
+                        *ngFor="let item of [].constructor(12),let i = index">
+                        {{i+1}}
+                        <div class="x-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="general-report calendar">
+        <div class="title">Calendar</div>
+        <div class="group-button">
+            <button class="calendar-button">
+                <img src="/assets/Image/SaleReport/CalendarIcon.png" alt
+                    class="calendar-icon" (click)="SelectCalendar(false)">
+                {{months[calendar.currentDay.getMonth()]}}
+                {{calendar.currentDay.getFullYear()}}
+                <img src="/assets/Image/SaleReport/WhiteDownArrow.png" alt
+                    class="down-arrow" (click)="SelectCalendar(true)">
+            </button>
+            <a href="#">View</a>
+        </div>
+        <div class="calendar-grid-container">
+            <div class="item header">S</div>
+            <div class="item header">M</div>
+            <div class="item header">T</div>
+            <div class="item header">W</div>
+            <div class="item header">T</div>
+            <div class="item header">F</div>
+            <div class="item header">S</div>
+            <div [class]="item.status == 1 ? 'item' : 'item deactivated'"
+                *ngFor="let item of calendar.days">{{item.value[2]}}</div>
+        </div>
+    </div>
+    <div class="general-report circle-chart-report">
+        <div class="shop-details">
+            <img [src]="circleChart.logo" alt="">
+            <div>
+                <div class="name">{{circleChart.shopName}}</div>
+                <div class="description">{{circleChart.description}}</div>
+            </div>
+        </div>
+        <div class="group-chart">
+            <div class="circle-chart">
+                <div class="circle-chart-item" *ngFor="let item of circleChart.options"
+                [style.--polygon]="item.polygon"
+                [style.--rotate]="'rotate('+item.rotate+'deg)'"
+                [style.--bgColor]="item.color"
+                
+                ></div>
+            </div>
+            <div class="description" >
+                <div class="description-item" *ngFor="let item of circleChart.options" 
+                [style.--bgColor]="item.color">
+                    {{item.name}}
+                </div>
+            </div>
+            
+        </div>
+        <button class="calendar-button">
+            <img src="/assets/Image/SaleReport/CalendarIcon.png" alt
+                                class="calendar-icon">
+                            2022
+                            <img src="/assets/Image/SaleReport/WhiteDownArrow.png"
+                                alt class="down-arrow">
+        </button>
+        <div class="more-details">
+            <div class="item" *ngFor="let item of circleChart.moreDetailsOptions">
+                <div class="more-details-title">{{FormatNumber(item.title)}}</div>
+                <div class="value">{{FormatNumber(item.value)}}</div>
+                <div class="special-value" *ngIf="item.specialValue!=0">+{{FormatNumber(item.specialValue)}}</div>
+            </div>
+        </div>
+        <div class="visitor">
+            <div class="visitor-option" *ngFor="let item of circleChart.visitorOptions">
+                <div class="visitor-title">{{item.title}}</div>
+                <div class="amount">{{FormatNumber(item.amount)}}</div>
+                <div class="percentage" [style.--percentage]="item.percentage+'%'"></div>
+            </div>
+        </div>
+    </div>
+</div>

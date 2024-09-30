@@ -4,13 +4,13 @@
         <span class="brand-name">FooDPT</span>
     </div>
     <div class="main-navigation">
-        <div
+        <a [routerLink]="item.slug"
             [class]="i==selectedNavigation? 'navigation-option selected':'navigation-option'"
             *ngFor="let item of navigationOption, let i = index"
             (click)="ChangeSelectedNavigation(i)">
             <img [src]="item.icon" alt>
-            <span>{{item.name}}</span>
-        </div>
+            <span >{{item.name}}</span>
+    </a>
     </div>
 </div>
 

@@ -1,0 +1,434 @@
+.container {
+    display: flex;
+}
+
+.general-report {
+    border: solid #161717 1px;
+    margin: 83px auto;
+    border-radius: 20px;
+    color: white;
+    background-color: #161717;
+}
+
+.general-report .title {
+    font-weight: bold;
+
+}
+
+.general-report .group-button {
+    margin-left: auto;
+    margin-right: 24px;
+
+}
+
+.general-report .group-button .filter {
+    font-weight: bold;
+    position: relative;
+    border: solid #525252 2px;
+    border-radius: 6px;
+    background-color: #161717;
+    color: white;
+    padding: 6px 10px 6px 36px;
+    margin-right: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.general-report .group-button .filter img {
+    position: absolute;
+    top: 7px;
+    right: 50px;
+}
+
+.general-report .group-button .download {
+    position: relative;
+    background-color: #FAD85D;
+    // border: solid #FAD85D 3px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px 10px 8px 33px;
+
+}
+
+.general-report .group-button .download img {
+    position: absolute;
+    top: 8px;
+    right: 80px;
+}
+
+.customer-details {
+    width: 623px;
+}
+
+.general-report .report-header {
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.customer-details table {
+    width: 100%;
+    margin-top: 28px;
+}
+
+.customer-details table thead tr td {
+    color: #8A8A8A;
+    padding: 13px 0 13px 24px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.customer-details table tbody tr td {
+    font-weight: 100;
+    font-size: 12px;
+    padding: 13px 0 13px 24px;
+    border-top: solid #3F3F3F 2px;
+}
+
+.customer-details table tbody tr td.status {
+    color: var(--color);
+
+}
+
+.sales .report-header .calendar-button {
+    position: relative;
+    background-color: #161717;
+    border: solid #525252 2px;
+    color: white;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-right: 16px;
+    padding: 6px 34px;
+}
+
+.sales .report-header .calendar-button .calendar-icon {
+    position: absolute;
+    left: 10px;
+}
+
+.sales .report-header .calendar-button .down-arrow {
+    position: absolute;
+    right: 10px;
+
+}
+
+.sales .chart {
+    margin-left: 14px;
+    margin-bottom: 57px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.sales .chart .y-direction .item {
+    margin: 7px;
+    position: relative;
+    color: #525252;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sales .chart .x-direction {
+    display: flex;
+    margin-left: 39px;
+    width: 464px;
+}
+
+.sales .chart .x-direction .item {
+    margin: auto;
+    font-size: 12px;
+    color: #525252;
+    font-weight: bold;
+    position: relative;
+    width: 10.6px;
+}
+
+.sales .chart .x-direction .item .x-line {
+    background-color: #1D1C28;
+    width: 1.25px;
+    position: absolute;
+    height: 150px;
+    bottom: 20px;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.sales .chart .y-direction .item .y-line {
+    background-color: #1D1C28;
+    height: 1.25px;
+    position: absolute;
+    width: 455px;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+.sales .chart .contents {
+    position: absolute;
+    // position: relative;
+    width: 426px;
+    height: 123px;
+    bottom: 34px;
+    left: 56px;
+}
+
+.sales .chart .contents .item {
+    width: 1.25px;
+    height: 1.25px;
+    position: absolute;
+    bottom: var(--position-bottom);
+    left: var(--position-left);
+    width: var(--width);
+    transform-origin: left;
+    transform: rotate(var(--rotate));
+    z-index: 1;
+}
+
+.sales .chart .contents .item.value1 {
+    background-color: #845ED7;
+}
+
+.sales .chart .contents .item.value2 {
+    background-color: #73FFCC;
+}
+
+
+.sales .chart .contents .item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -2.5px;
+    left: -2px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+}
+
+.sales .chart .contents .item.value1::after {
+    background-color: #845ED7;
+}
+
+.sales .chart .contents .item.value2::after {
+    background-color: #73FFCC;
+
+}
+
+.calendar {
+    width: 281px;
+    max-height: fit-content;
+}
+
+.calendar .title {
+    margin-top: 24px;
+    margin-left: 24px;
+}
+
+.calendar .group-button {
+    margin-top: 16px;
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.calendar .group-button button {
+    background-color: #161717;
+    border: solid #525252 2px;
+    color: white;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-right: 16px;
+    padding: 6px 34px;
+    position: relative;
+    font-weight: bold;
+}
+
+.calendar .group-button button .calendar-icon {
+    position: absolute;
+    left: 10px;
+}
+
+.calendar .group-button button .down-arrow {
+    position: absolute;
+    right: 7px;
+    top: 8px
+}
+
+.calendar .group-button a {
+    margin-left: auto;
+    color: white;
+    // margin-right: 28px;
+    font-size: 12px;
+}
+
+.calendar .calendar-grid-container {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.calendar .calendar-grid-container .item {
+    margin-bottom: 10px;
+}
+
+.calendar .calendar-grid-container .item.header {
+    color: #525252;
+}
+
+.calendar .calendar-grid-container .item.deactivated {
+    color: #383456;
+}
+
+.circle-chart-report {
+    width: 307px;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.circle-chart-report .shop-details {
+    margin-top: 28px;
+    margin-left: 24px;
+    display: flex;
+}
+
+.circle-chart-report .shop-details img {
+    width: 34px;
+    height: 34px;
+    margin-right: 16px;
+}
+
+.circle-chart-report .shop-details .name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.circle-chart-report .shop-details .description {
+    font-size: 12px;
+    font-weight: bold;
+    color: #686163;
+}
+
+.circle-chart-report .group-chart {
+    display: flex;
+    justify-content: center;
+}
+
+.circle-chart-report .group-chart .circle-chart {
+    height: 160px;
+    width: 160px;
+    margin-top: 24px;
+    position: relative;
+}
+
+.circle-chart-report .group-chart .circle-chart .circle-chart-item {
+    height: 160px;
+    width: 160px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--bgColor);
+    border-radius: 50%;
+    transform: var(--rotate);
+    // clip-path: polygon(50% 50%, 0 0, 50%  0);
+    border: none;
+    clip-path: var(--polygon);
+}
+
+.circle-chart-report .group-chart .description {
+    margin-left: 23px;
+    margin-top: 36px;
+}
+
+.circle-chart-report .group-chart .description .description-item {
+    font-size: 10px;
+}
+
+.circle-chart-report .group-chart .description .description-item::before {
+    content: "";
+    display: inline-block;
+    height: 11px;
+    width: 11px;
+    background-color: var(--bgColor);
+    margin-right: 4px;
+}
+
+.circle-chart-report .calendar-button {
+    position: relative;
+    background-color: #161717;
+    border: solid #525252 2px;
+    color: white;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-top: 98px;
+    padding: 6px 62px;
+}
+
+.circle-chart-report .more-details {
+    text-align: left;
+    margin-top: 38px;
+    // display: grid;
+    // text-align: center;
+    // grid-template-columns: repeat(7, 1fr);
+}
+
+.circle-chart-report .more-details .item {
+    display: grid;
+    grid-template-columns: 182px 40px 30px;
+    font-size: 12px;
+}
+
+.circle-chart-report .more-details .item .more-details-title {
+    margin-left: 24px;
+}
+
+.circle-chart-report .more-details .item .value {
+    text-align: left;
+}
+
+.circle-chart-report .more-details .item .value {
+    text-align: left;
+}
+
+.circle-chart-report .more-details .item .special-value {
+    color: #21BB85;
+}
+
+.circle-chart-report .visitor{
+    margin-top: 63px;
+    text-align: left;
+    margin-left: 24px;
+    margin-right: 24px;
+    margin: 63px 24px 53px 24px;
+    
+}
+
+.circle-chart-report .visitor .visitor-option{
+    margin-bottom: 24px;
+}
+.circle-chart-report .visitor .visitor-option .visitor-title{
+    font-size: 12px;
+}
+
+.circle-chart-report .visitor .visitor-option .amount{
+    font-size: 32px;
+    font-weight: bold;
+}
+.circle-chart-report .visitor .visitor-option .percentage{
+    height: 8px;
+    width: 100%;
+    background-color: #1E1828;
+    border-radius: 8px;
+}
+.circle-chart-report .visitor .visitor-option .percentage::after{
+    content: "";
+    display: block;
+    height: 8px;
+    width: var(--percentage);
+    background-image: linear-gradient(to right,#A36BFD, #6B8AEB);;
+    border-radius: 8px;
+}
