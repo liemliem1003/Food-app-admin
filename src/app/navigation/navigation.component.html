@@ -6,12 +6,23 @@
     <div class="main-navigation">
         <a [routerLink]="item.slug"
             [class]="i==selectedNavigation? 'navigation-option selected':'navigation-option'"
+            routerLinkActive="actives"
             *ngFor="let item of navigationOption, let i = index"
             (click)="ChangeSelectedNavigation(i)">
             <img [src]="item.icon" alt>
-            <span >{{item.name}}</span>
-    </a>
+            <span>{{item.name}}</span>
+        </a>
     </div>
+    <!-- <div class="main-navigation">
+        <a [routerLink]="item.slug"
+            class="navigation-option"
+            routerLinkActive="'selected'"
+            *ngFor="let item of navigationOption, let i = index"
+            (click)="ChangeSelectedNavigation(i)">
+            <img [src]="item.icon" alt>
+            <span>{{item.name}}</span>
+        </a>
+    </div> -->
 </div>
 
 <div class="top-navigation">

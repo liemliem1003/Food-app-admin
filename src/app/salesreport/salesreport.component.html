@@ -25,13 +25,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of cutomerDetails">
+                    <tr *ngFor="let item of customerDetails">
                         <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.date}}</td>
                         <td>$ {{AddSpaceToNumber(item.amount)}}</td>
                         <td class="status"
-                            [style.--color]="cutomerDetailsStatus[item.status].color">{{cutomerDetailsStatus[item.status].status}}</td>
+                            [style.--color]="customerDetailsStatus[item.status].color">{{customerDetailsStatus[item.status].status}}</td>
                     </tr>
                 </tbody>
             </table>

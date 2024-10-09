@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class SalesreportComponent {
 
-  cutomerDetails: any = [
+  customerDetails: any = [
     {
       id: "RZ17308",
       name: "Name 1",
@@ -38,9 +38,51 @@ export class SalesreportComponent {
     //   date: "13/01/2024",
     //   amount: 5000,
     //   status: 2
+    // },
+    // {
+    //   id: "RZ17308",
+    //   name: "Name 1",
+    //   date: "13/01/2024",
+    //   amount: 5000,
+    //   status: 2
+    // },
+    // {
+    //   id: "RZ17308",
+    //   name: "Name 1",
+    //   date: "13/01/2024",
+    //   amount: 5000,
+    //   status: 2
+    // },
+    // {
+    //   id: "RZ17308",
+    //   name: "Name 1",
+    //   date: "13/01/2024",
+    //   amount: 5000,
+    //   status: 2
+    // },
+    // {
+    //   id: "RZ17308",
+    //   name: "Name 1",
+    //   date: "13/01/2024",
+    //   amount: 5000,
+    //   status: 2
+    // },
+    // {
+    //   id: "RZ17308",
+    //   name: "Name 1",
+    //   date: "13/01/2024",
+    //   amount: 5000,
+    //   status: 2
+    // },
+    // {
+    //   id: "RZ17308",
+    //   name: "Name 1",
+    //   date: "13/01/2024",
+    //   amount: 5000,
+    //   status: 2
     // }
   ]
-  cutomerDetailsStatus: any = {
+  customerDetailsStatus: any = {
     0: {
       status: "Shipped",
       color: "#C49D50"

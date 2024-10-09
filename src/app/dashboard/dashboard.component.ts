@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ApiserviceComponent } from '../apiservice/apiservice.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+
   todaySales: any = [
     {
       icon: "/assets/Image/Dashboard/TotalSalesIcon.png",
@@ -215,11 +217,58 @@ export class DashboardComponent {
       },
     ]
   }
+  constructor(private apiService: ApiserviceComponent) { }
+
+  API:any = this.apiService.DashboardAPI()
+
   ngOnInit() {
+    var currentDate = new Date()
+    const formattedDate = currentDate.toISOString().split('T')[0];
+    this.API.getRevenueByDate(formattedDate).then((data:any)=>{
+      this.todaySales[0].value = this.FormatNumber(data.todayRevenue)+ " VND"
+      this.todaySales[0].description = data.percentageChange + "%"
+    })
+    this.API.getOrderCountByDate(formattedDate).then((data:any)=>{
+      this.todaySales[1].value = this.FormatNumber(data.todayOrderCount)
+      this.todaySales[1].description = data.percentageChange + "%"
+    })
+    this.API.getProductSoldByDate(formattedDate).then((data:any)=>{
+      this.todaySales[2].value = this.FormatNumber(data.todayProductCount)
+      this.todaySales[2].description = data.percentageChange + "%"
+    })
+    this.API.getUserCountByDate(formattedDate).then((data:any)=>{
+      this.todaySales[3].value = this.FormatNumber(data.totalUserCount)
+      this.todaySales[3].description = data.percentageChange + "%"
+    })
+
+    //
+    var startDate = new Date();
+    var dayNum = 7
+    startDate.setDate(startDate.getDate() - dayNum);
+    var formattedStartDate = startDate.toISOString().split('T')[0];
+    
+    this.API.getRevenueByDateRangeForAdmin(formattedStartDate,formattedDate).then((data:any)=>{
+      const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      for (let i = 0; i < dayNum; i++) {
+
+        var date = new Date();
+        
+        date.setDate(startDate.getDate() + i)
+        
+        this.totalRevenue.columns[i].colName = weekdays[date.getDay()]
+
+        var formattedDate = date.toISOString().split('T')[0];
+
+        this.totalRevenue.columns[i].onlineSales = data.online[formattedDate]
+        this.totalRevenue.columns[i].offlineSales = data.offline[formattedDate]
+        
+      }
+      console.log(this.totalRevenue.columns);
+    })
+
     this.UpdateRowsOfTotalRevenue()
     this.UpdateColumnssOfTargetVsReality()
     this.UpdateVolumeVsServiceLevel()
-    console.log(this.volumeVsServiceLevel);
 
   }
 

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-navigation',
@@ -53,5 +54,8 @@ export class NavigationComponent {
     this.selectedNavigation = number
   }
 
-
+  ngOnInit() {
+    // console.log(window.);
+    
+  }
 }
