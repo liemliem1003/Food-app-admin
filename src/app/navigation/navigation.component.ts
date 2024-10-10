@@ -23,6 +23,11 @@ export class NavigationComponent {
       name: "Leaderboard",
     },
     {
+      icon: "/assets/Image/Navigation/Leaderboard.png",
+      name: "Nhà hàng",
+      slug:"/restaurant"
+    },
+    {
       icon: "/assets/Image/Navigation/Costumer.png",
       name: "Costumer",
     },
@@ -55,7 +60,5 @@ export class NavigationComponent {
   }
 
   ngOnInit() {
-    // console.log(window.);
-    
   }
 }

@@ -1,0 +1,19 @@
+<div class="login-container">
+    <div class="banner-container">
+        <img src="/assets/Image/Login/Banner.png" alt="" class="banner">
+        <div>Welcome Back!</div>
+    </div>
+    <div class="sign-in-container">
+        <img src="/assets/Image/Login/Logo.png" alt="" class="logo">
+        <div class="text">Sign in to FooDPT</div>
+        <div class="input-container">
+            <input type="email" placeholder="Email" #email>
+            <img src="/assets/Image/Login/EmailIcon.png" alt="" class="icon">
+        </div>
+        <div class="input-container">
+            <input type="password" placeholder="Password" #password>
+            <img src="/assets/Image/Login/PasswordIcon.png" alt="" class="icon">
+        </div>
+        <button class="sign-in-button" (click)="Login(email.value,password.value)">Sign In</button>
+    </div>
+</div>

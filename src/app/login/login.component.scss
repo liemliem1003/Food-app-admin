@@ -1,0 +1,91 @@
+.login-container {
+    display: flex;
+    height: 100vh; 
+}
+
+.banner-container {
+    position: relative;
+    width: 50%; 
+    height: 100vh;
+    overflow: hidden;
+}
+
+.banner-container img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+}
+
+.banner-container div {
+    position: absolute;
+    width: max-content;
+    top: 50%;
+    left: 50%;
+    font-size: 64px;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+
+.sign-in-container {
+    width: 50%;
+    padding: 20px;
+    display: block;
+}
+.sign-in-container .logo{
+    margin-top: 50px;
+    margin-left: 194px;
+}
+
+.sign-in-container .text{
+    text-align: center;
+    font-size: 48px;
+    margin-top: 43px;
+    font-weight: bold;
+    color: #FF7A1C;
+    margin-bottom: 148px;
+}
+
+.input-container{
+    // align-items: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.input-container input{
+    width: 344px;
+    height: 34px;
+    padding: 19px 41px 19px 41px;
+    border-radius: 10px;
+    background-color: #FF7A1C;
+    border: none;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.input-container input::placeholder {
+    color: black;
+    font-size: 20px;
+  }
+
+.input-container img{
+    position: absolute;
+    left: 264px;
+    top: 28px;
+}
+
+.sign-in-container .sign-in-button {
+    display: block;
+    width: 274px; 
+    height: 72px;
+    padding: 10px 0;
+    background-color: #FF7A1C;
+    border: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    margin: 74px auto 0;
+    cursor: pointer;
+}
