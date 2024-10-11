@@ -221,22 +221,29 @@ export class DashboardComponent {
 
   API:any = this.apiService.DashboardAPI()
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.APIInitialFunction();
+    this.UpdateRowsOfTotalRevenue()
+    this.UpdateColumnssOfTargetVsReality()
+    this.UpdateVolumeVsServiceLevel()
+
+  }
+  async APIInitialFunction(){
     var currentDate = new Date()
     const formattedDate = currentDate.toISOString().split('T')[0];
-    this.API.getRevenueByDate(formattedDate).then((data:any)=>{
+    await this.API.getRevenueByDate(formattedDate).then((data:any)=>{
       this.todaySales[0].value = this.FormatNumber(data.todayRevenue)+ " VND"
       this.todaySales[0].description = data.percentageChange + "%"
     })
-    this.API.getOrderCountByDate(formattedDate).then((data:any)=>{
+    await this.API.getOrderCountByDate(formattedDate).then((data:any)=>{
       this.todaySales[1].value = this.FormatNumber(data.todayOrderCount)
       this.todaySales[1].description = data.percentageChange + "%"
     })
-    this.API.getProductSoldByDate(formattedDate).then((data:any)=>{
+    await this.API.getProductSoldByDate(formattedDate).then((data:any)=>{
       this.todaySales[2].value = this.FormatNumber(data.todayProductCount)
       this.todaySales[2].description = data.percentageChange + "%"
     })
-    this.API.getUserCountByDate(formattedDate).then((data:any)=>{
+    await this.API.getUserCountByDate(formattedDate).then((data:any)=>{
       this.todaySales[3].value = this.FormatNumber(data.totalUserCount)
       this.todaySales[3].description = data.percentageChange + "%"
     })
@@ -247,7 +254,7 @@ export class DashboardComponent {
     startDate.setDate(startDate.getDate() - dayNum);
     var formattedStartDate = startDate.toISOString().split('T')[0];
     
-    this.API.getRevenueByDateRangeForAdmin(formattedStartDate,formattedDate).then((data:any)=>{
+    await this.API.getRevenueByDateRangeForAdmin(formattedStartDate,formattedDate).then((data:any)=>{
       const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       for (let i = 0; i < dayNum; i++) {
 
@@ -265,13 +272,7 @@ export class DashboardComponent {
       }
       console.log(this.totalRevenue.columns);
     })
-
-    this.UpdateRowsOfTotalRevenue()
-    this.UpdateColumnssOfTargetVsReality()
-    this.UpdateVolumeVsServiceLevel()
-
   }
-
   UpdateRowsOfTotalRevenue() {
     //update maxValue
     var maxValue = 0

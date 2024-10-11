@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,10 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'FoodAppAdmin';
-  public login: boolean = true
+  
+  // token: string = this.cookieService.get('loginToken');
+
+  // public login: boolean = this.token != '' ? true : false
+  public login : boolean = document.cookie== ''?false : true
   
 }

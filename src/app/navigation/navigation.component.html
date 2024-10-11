@@ -8,7 +8,7 @@
             [class]="i==selectedNavigation? 'navigation-option selected':'navigation-option'"
             routerLinkActive="actives"
             *ngFor="let item of navigationOption, let i = index"
-            (click)="ChangeSelectedNavigation(i)">
+            (click)="ChangeSelectedNavigation(i, i == navigationOption.length - 1? true: false )">
             <img [src]="item.icon" alt>
             <span>{{item.name}}</span>
         </a>

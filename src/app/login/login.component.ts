@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ApiserviceComponent } from '../apiservice/apiservice.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { ApiserviceComponent } from '../apiservice/apiservice.component';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private apiService: ApiserviceComponent) { }
+  constructor(private apiService: ApiserviceComponent,private cookieService: CookieService) { }
 
   Login(email: string, password: string) {
     var credentials = {
@@ -19,7 +20,13 @@ export class LoginComponent {
     }
     this.apiService.LoginAPI(credentials).then((data:any)=>{
       console.log(data);
-      
+      var token = data.token
+      this.cookieService.set('loginToken', token, 7, '/');
+      location.reload();
+    }).catch((error: any) => {
+      console.log(error);
+      alert("Username or Password is incorrect!!!")
     })
   }
+  
 }

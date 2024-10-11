@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -14,11 +15,11 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './apiservice.component.css'
 })
 export class ApiserviceComponent {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private cookieService: CookieService) {
   }
   httpRequest: any = this.http
   private apiUrl = 'http://14.225.206.203:8080/api/v1/';
-  apiToken = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiQWRtaW4ifSwidXNlcklkIjoxLCJlbWFpbCI6ImFkbWluMkBnbWFpbC5jb20iLCJzdWIiOiJhZG1pbjJAZ21haWwuY29tIiwiZXhwIjoxNzMwODk2MzMxfQ.DKGjiB1HQg5JCFrX5Tsx_tRpbRw8uKvLDbrMidhyUOs"
+  apiToken = this.cookieService.get('loginToken')
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -28,7 +29,7 @@ export class ApiserviceComponent {
   LoginAPI(credentials:any){
     const HTTPRequest = this.http;
     const api = this.apiUrl + "users/login"
-    return HTTPRequest.post(api, credentials ,this.httpOptions).toPromise();
+    return HTTPRequest.post(api, credentials).toPromise();
   }
   DashboardAPI() {
     const HTTPRequest = this.http;

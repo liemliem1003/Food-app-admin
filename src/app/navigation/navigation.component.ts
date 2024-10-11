@@ -2,21 +2,21 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { routes } from '../app.routes';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
   selectedNavigation: any = 0
-  navigationOption:any =[
+  navigationOption: any = [
     {
       icon: "/assets/Image/Navigation/Dashboard.png",
       name: "Dashboard",
-      slug:"/dashboard"
+      slug: "/dashboard"
     },
     {
       icon: "/assets/Image/Navigation/Leaderboard.png",
@@ -25,7 +25,7 @@ export class NavigationComponent {
     {
       icon: "/assets/Image/Navigation/Leaderboard.png",
       name: "Nhà hàng",
-      slug:"/restaurant"
+      slug: "/restaurant"
     },
     {
       icon: "/assets/Image/Navigation/Costumer.png",
@@ -38,7 +38,7 @@ export class NavigationComponent {
     {
       icon: "/assets/Image/Navigation/SalesReport.png",
       name: "Sales Report",
-      slug:"/sale-report"
+      slug: "/sale-report"
     },
     {
       icon: "/assets/Image/Navigation/Messages.png",
@@ -53,12 +53,19 @@ export class NavigationComponent {
       name: "Sign Out",
     }
   ]
-
-  ChangeSelectedNavigation(number:number){
-    console.log(number);
+  constructor(private cookieService: CookieService) { }
+  ChangeSelectedNavigation(number: number, isLogout: boolean) {
     this.selectedNavigation = number
+    isLogout ? this.RemoveCookie() : true
   }
 
   ngOnInit() {
+    console.log(this.cookieService.get('loginToken'));
+  }
+  RemoveCookie() {
+    if (window.confirm("Would you like to logout?")) {
+      this.cookieService.delete('loginToken', '/');
+      location.reload()
+    }
   }
 }
