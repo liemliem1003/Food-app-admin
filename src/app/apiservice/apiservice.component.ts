@@ -75,6 +75,14 @@ export class ApiserviceComponent {
         var str = "supplier_info/get_supplier_by_id/"
         const api = this.apiUrl + str + id
         return HTTPRequest.get(api, this.httpOptions).toPromise();
+      },
+      getFoodOrderBySupplierForAdmin: (id:any, page:any = 0, limit:any = 5,desc:boolean, startDate:string, endDate:string) =>{
+        var str = "food_orders/get_food_order_by_supplier_for_admin/"
+        var api = this.apiUrl + str +`${id}?page=${page}&size=${limit}&sortBy=orderTime&sortDirection=${desc?"desc":"acs"}&startDate=${startDate}&endDate=${endDate}`
+        console.log(api);
+        
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+
       }
     }
   }

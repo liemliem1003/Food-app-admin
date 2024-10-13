@@ -2,23 +2,28 @@
     display: flex;
 }
 .container .left-group{
-    // margin: auto;
+    margin-left: 40px;
 }
 
 .container .right-group{
     margin-left: 17px;
-    margin-top: 24px;
+    margin-top: 35px;
+    background-color: #1F1D2B;
+    width: 372px;
+    border-radius: 8px;
+    color: white;
 }
 
 .top-left-group{
     display: flex;
+    width: 667px;
 }
 
 .top-left-group .item{
     background-color: #1F1D2B;
     width: 200px;
     height: 150px;
-    margin: 24px;
+    margin: 35px 24px 24px 0;
     border-radius: 8px;
     color: white;
 }
@@ -51,4 +56,121 @@
     color: #ABBBC2;
     font-size: 14px;
     margin-left: 16px;
+}
+
+.bottom-left-group{
+    background-color: #1F1D2B;
+    width: 649px;
+    border-radius: 8px;
+    border: solid 0.1px #1F1D2B;
+}
+
+.bottom-left-group table{
+    width: 100%;
+    color: white;
+}
+
+.bottom-left-group table thead td{
+    border-bottom: solid 1.5px #393C49;
+}
+.bottom-left-group table td{
+    padding: 10px 0 10px 24px;
+}
+
+.bottom-left-group table td.customer{
+    display: flex;
+    align-items: center;
+}
+
+.bottom-left-group table td.customer img{
+    clip-path: circle();
+    background-color: #FFB572;
+    margin-right: 16px;
+}
+
+.bottom-left-group .info-group{
+    color: white;
+    display: flex;
+    align-items: center;
+    margin: 24px 16px 15px 24px;
+}
+
+.bottom-left-group .info-group .name{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.bottom-left-group .info-group button{
+    margin-left: auto;
+    width: 128px;
+    height: 45px;
+    border: solid 2px #393C49;
+    border-radius: 8px;
+    background-color: #1F1D2B;
+    color: white;
+}
+
+.bottom-left-group table td span{
+    color: var(--color);
+    background-color: var(--bgColor) ;
+    font-size: 14px;
+    display: flex;
+    width: 91px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.bottom-left-group table tbody tr:hover{
+    background-color: #312d48;
+    transition: 0.3s;
+}
+
+.container .right-group .group{
+    margin-top: 32px;
+    margin-left: 24px;
+    margin: 32px 24px 20px 24px;
+    display: flex;
+    padding-bottom: 20px;
+    align-items: center;
+    border-bottom: solid 1.5px #393C49;
+}
+
+.container .right-group .group .name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container .right-group .group button{
+    margin-left: auto;
+    width: 95px;
+    height: 45px;
+    border-radius: 8px;
+    background-color: #1F1D2B;
+    color: white;
+    border: solid 2px #393C49;
+}
+
+.container .right-group .item-group{
+    margin-left: 24px;
+}
+
+.container .right-group .item-group .item{
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.container .right-group .item-group img{
+    margin-right: 16px;
+    clip-path: circle();
+}
+
+.container .right-group .item-group .info-group .name{
+    font-size: 14px;
+}
+
+.container .right-group .item-group .info-group .ordered{
+    font-size: 12px;
+    color: #ABBBC2;
 }

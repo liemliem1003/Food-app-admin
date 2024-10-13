@@ -4,8 +4,11 @@
             <div class="item" *ngFor="let item of listinfo">
                 <div class="item-group-info">
                     <img [src]="item.icon" alt class="icon">
-                    <div class="percentage">{{item.percentage > 0 ? "+" + item.percentage: item.percentage}}%</div>
-                    <img [src]="item.percentage > 0 ? '/assets/Image/RestaurantDetails/UpArrow.png' : '/assets/Image/RestaurantDetails/DownArrow.png'" alt class="value-up-or-down">
+                    <div class="percentage">{{item.percentage > 0 ? "+" +
+                        item.percentage: item.percentage}}%</div>
+                    <img
+                        [src]="item.percentage > 0 ? '/assets/Image/RestaurantDetails/UpArrow.png' : '/assets/Image/RestaurantDetails/DownArrow.png'"
+                        alt class="value-up-or-down">
                 </div>
                 <div class="value">{{AddCommaToNumber(item.value)}}</div>
                 <div class="name">{{item.name}}</div>
@@ -13,10 +16,10 @@
         </div>
         <div class="bottom-left-group">
             <div class="info-group">
-                <div class="name"></div>
+                <div class="name">Order Report</div>
                 <button>Filter</button>
             </div>
-            <table>
+            <table CELLSPACING=0>
                 <thead>
                     <tr>
                         <td>Customer</td>
@@ -25,9 +28,44 @@
                         <td>Status</td>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr *ngFor="let item of orderReport">
+                        <td class="customer">
+                            <img [src]="item.avatar" alt>
+                            <span>{{item.customer}}</span>
+                        </td>
+                        <td>
+                            {{item.menu}}
+                        </td>
+                        <td>
+                            {{item.amount}} VND
+                        </td>
+                        <td>
+                            <span
+                            [style.--color] = "orderReportStatus[item.status].color"
+                            [style.--bgColor] = "orderReportStatus[item.status].bgColor"
+                            >{{orderReportStatus[item.status].text}}
+                        </span>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
-    <div class="right-group">wqeqwew</div>
+    <div class="right-group">
+        <div class="group">
+            <div class="name">Most Ordered</div>
+            <button>Today</button>
+        </div>
+        <div class="item-group">
+            <div class="item" *ngFor="let item of mostOrder">
+                <img [src]="item.img" alt="">
+                <div class="info-group">
+                    <div class="name">{{item.name}}</div>
+                    <div class="ordered">{{item.ordered}} dishes ordered</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

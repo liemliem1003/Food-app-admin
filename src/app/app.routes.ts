@@ -33,7 +33,3 @@ var routeNoneLogin: Routes = [
 ]
 
 export const routes: Routes = login? routeLogin : routeNoneLogin
-
-
-// console.log(test.login);
-
