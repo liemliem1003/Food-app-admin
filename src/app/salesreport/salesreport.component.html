@@ -114,11 +114,11 @@
             <div class="item header">T</div>
             <div class="item header">F</div>
             <div class="item header">S</div>
-            <div [class]="item.status == 1 ? 'item' : 'item deactivated'"
+            <div [class]="item.status == 1 ? 'item activated' : 'item deactivated'"
                 *ngFor="let item of calendar.days">{{item.value[2]}}</div>
         </div>
     </div>
-    <div class="general-report circle-chart-report">
+    <!-- <div class="general-report circle-chart-report">
         <div class="shop-details">
             <img [src]="circleChart.logo" alt="">
             <div>
@@ -164,5 +164,5 @@
                 <div class="percentage" [style.--percentage]="item.percentage+'%'"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

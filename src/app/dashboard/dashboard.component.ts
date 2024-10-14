@@ -152,45 +152,73 @@ export class DashboardComponent {
   }
 
   topProducts: any = [
+    // {
+    //   name: "Home Decor Range 1",
+    //   popularity:0.4,
+    //   sales:0.5,
+    //   mainColor: "0095FF",
+    //   bgColor: "CDE7FF",
+    //   color:"0095FF",
+    //   saleBgColor:"F0F9FF"
+    // },
+    // {
+    //   name: "Home Decor Range 2",
+    //   popularity:0.6,
+    //   sales:0.7,
+    //   mainColor: "00E096",
+    //   bgColor: "8CFAC7",
+    //   color:"00E58F",
+    //   saleBgColor:"F0FDF4"
+    // },
+    // {
+    //   name: "Home Decor Range 3",
+    //   popularity:0.8,
+    //   sales:0.2,
+    //   mainColor: "884DFF",
+    //   bgColor: "C5A8FF",
+    //   color:"884DFF",
+    //   saleBgColor:"FBF1FF"
+    // },
+    // {
+    //   name: "Home Decor Range 4",
+    //   popularity:0.6,
+    //   sales:0.8,
+    //   bgColor: "FFD5A4",
+    //   mainColor: "FF8F0D",
+    //   color:"FF8900",
+    //   saleBgColor:"FEF6E6"
+    // },
+  ]
+
+  topProductProps = [
     {
-      name: "Home Decor Range 1",
-      popularity:0.4,
-      sales:0.5,
       mainColor: "0095FF",
       bgColor: "CDE7FF",
-      color:"0095FF",
-      saleBgColor:"F0F9FF"
+      color: "0095FF",
+      saleBgColor: "F0F9FF"
     },
     {
-      name: "Home Decor Range 2",
-      popularity:0.6,
-      sales:0.7,
       mainColor: "00E096",
       bgColor: "8CFAC7",
-      color:"00E58F",
-      saleBgColor:"F0FDF4"
+      color: "00E58F",
+      saleBgColor: "F0FDF4"
     },
     {
-      name: "Home Decor Range 3",
-      popularity:0.8,
-      sales:0.2,
       mainColor: "884DFF",
       bgColor: "C5A8FF",
-      color:"884DFF",
-      saleBgColor:"FBF1FF"
+      color: "884DFF",
+      saleBgColor: "FBF1FF"
     },
     {
-      name: "Home Decor Range 4",
-      popularity:0.6,
-      sales:0.8,
       bgColor: "FFD5A4",
       mainColor: "FF8F0D",
-      color:"FF8900",
-      saleBgColor:"FEF6E6"
-    },
+      color: "FF8900",
+      saleBgColor: "FEF6E6"
+    }
   ]
+
   volumeVsServiceLevel: any = {
-    options:[
+    options: [
       {
         volume: 200,
         service: 150,
@@ -219,7 +247,7 @@ export class DashboardComponent {
   }
   constructor(private apiService: ApiserviceComponent) { }
 
-  API:any = this.apiService.DashboardAPI()
+  API: any = this.apiService.DashboardAPI()
 
   async ngOnInit() {
     await this.APIInitialFunction();
@@ -228,22 +256,22 @@ export class DashboardComponent {
     this.UpdateVolumeVsServiceLevel()
 
   }
-  async APIInitialFunction(){
+  async APIInitialFunction() {
     var currentDate = new Date()
     const formattedDate = currentDate.toISOString().split('T')[0];
-    await this.API.getRevenueByDate(formattedDate).then((data:any)=>{
-      this.todaySales[0].value = this.FormatNumber(data.todayRevenue)+ " VND"
+    await this.API.getRevenueByDate(formattedDate).then((data: any) => {
+      this.todaySales[0].value = this.FormatNumber(data.todayRevenue) + " VND"
       this.todaySales[0].description = data.percentageChange + "%"
     })
-    await this.API.getOrderCountByDate(formattedDate).then((data:any)=>{
+    await this.API.getOrderCountByDate(formattedDate).then((data: any) => {
       this.todaySales[1].value = this.FormatNumber(data.todayOrderCount)
       this.todaySales[1].description = data.percentageChange + "%"
     })
-    await this.API.getProductSoldByDate(formattedDate).then((data:any)=>{
+    await this.API.getProductSoldByDate(formattedDate).then((data: any) => {
       this.todaySales[2].value = this.FormatNumber(data.todayProductCount)
       this.todaySales[2].description = data.percentageChange + "%"
     })
-    await this.API.getUserCountByDate(formattedDate).then((data:any)=>{
+    await this.API.getUserCountByDate(formattedDate).then((data: any) => {
       this.todaySales[3].value = this.FormatNumber(data.totalUserCount)
       this.todaySales[3].description = data.percentageChange + "%"
     })
@@ -253,25 +281,41 @@ export class DashboardComponent {
     var dayNum = 7
     startDate.setDate(startDate.getDate() - dayNum);
     var formattedStartDate = startDate.toISOString().split('T')[0];
-    
-    await this.API.getRevenueByDateRangeForAdmin(formattedStartDate,formattedDate).then((data:any)=>{
+
+    await this.API.getRevenueByDateRangeForAdmin(formattedStartDate, formattedDate).then((data: any) => {
       const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       for (let i = 0; i < dayNum; i++) {
 
         var date = new Date();
-        
+
         date.setDate(startDate.getDate() + i)
-        
+
         this.totalRevenue.columns[i].colName = weekdays[date.getDay()]
 
         var formattedDate = date.toISOString().split('T')[0];
 
         this.totalRevenue.columns[i].onlineSales = data.online[formattedDate]
         this.totalRevenue.columns[i].offlineSales = data.offline[formattedDate]
-        
+
       }
-      console.log(this.totalRevenue.columns);
     })
+    await this.API.get_top_products(4).then((data: any) => {
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        this.topProducts.push(
+          {
+            name: data[i].supplierName,
+            popularity: data[i].orderCount/100,
+            sales: data[i].percentage/100,
+            bgColor: this.topProductProps[i].bgColor,
+            mainColor: this.topProductProps[i].mainColor,
+            color: this.topProductProps[i].color,
+            saleBgColor: this.topProductProps[i].saleBgColor
+          }
+        )
+      }
+    })
+
   }
   UpdateRowsOfTotalRevenue() {
     //update maxValue
@@ -319,9 +363,9 @@ export class DashboardComponent {
     var maxValue = 0
     for (let i = 0; i < this.volumeVsServiceLevel.options.length; i++) {
       var value = this.volumeVsServiceLevel.options[i].volume + this.volumeVsServiceLevel.options[i].service
-      if(maxValue < value){
+      if (maxValue < value) {
         maxValue = value
-      }   
+      }
     }
     this.volumeVsServiceLevel.maxValue = maxValue
   }

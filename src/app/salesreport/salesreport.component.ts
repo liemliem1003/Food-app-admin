@@ -32,55 +32,6 @@ export class SalesreportComponent {
       amount: 10000,
       status: 2
     },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // },
-    // {
-    //   id: "RZ17308",
-    //   name: "Name 1",
-    //   date: "13/01/2024",
-    //   amount: 5000,
-    //   status: 2
-    // }
   ]
   customerDetailsStatus: any = {
     0: {
@@ -297,9 +248,6 @@ export class SalesreportComponent {
   NumberToFixed(number: number) {
     return Number(number).toFixed(2)
   }
-  // ConvertToNumber(number:number){
-  //   return Number(number)
-  // }
   WidthCalculation(a: number, b: number) {
     return this.NumberToFixed(Math.sqrt(a * a + b * b))
   }
@@ -336,7 +284,6 @@ export class SalesreportComponent {
     this.calendar.days = days
   }
   SelectCalendar(up:boolean){
-    console.log(up);
     var currentYear = this.calendar.currentDay.getFullYear()
     var currentMonth = this.calendar.currentDay.getMonth()
     up ? this.calendar.currentDay = new Date(currentYear, currentMonth + 2,0): this.calendar.currentDay = new Date(currentYear, currentMonth,0)
@@ -385,12 +332,9 @@ export class SalesreportComponent {
 
       var r = 226.7/2
       let test = (r * Math.sqrt(2) * Math.tan(percentage * 2 * Math.PI) / (Math.tan(percentage * 2 * Math.PI) + 1)) / (2 * r)
-      console.log(test);
-      
       polygon += ")"
       this.circleChart.options[i].polygon = polygon
     }
     this.circleChart.total = total
-    console.log(this.circleChart);
   }
 }

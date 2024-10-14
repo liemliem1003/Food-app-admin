@@ -61,6 +61,11 @@ export class ApiserviceComponent {
         const api = this.apiUrl + str + startDate + "&" + endDate
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
+      get_top_products: (limit:number) =>{
+        var str = "report/get_top_supplier_by_orders_for_admin?limit="
+        const api = this.apiUrl + str + limit
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+      }
     }
   }
   RestaurantAPI(){

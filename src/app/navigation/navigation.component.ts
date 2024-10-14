@@ -18,36 +18,36 @@ export class NavigationComponent {
       name: "Dashboard",
       slug: "/dashboard"
     },
-    {
-      icon: "/assets/Image/Navigation/Leaderboard.png",
-      name: "Leaderboard",
-    },
+    // {
+    //   icon: "/assets/Image/Navigation/Leaderboard.png",
+    //   name: "Leaderboard",
+    // },
     {
       icon: "/assets/Image/Navigation/Leaderboard.png",
       name: "Nhà hàng",
       slug: "/restaurant"
     },
-    {
-      icon: "/assets/Image/Navigation/Costumer.png",
-      name: "Costumer",
-    },
-    {
-      icon: "/assets/Image/Navigation/Products.png",
-      name: "Products",
-    },
+    // {
+    //   icon: "/assets/Image/Navigation/Costumer.png",
+    //   name: "Costumer",
+    // },
+    // {
+    //   icon: "/assets/Image/Navigation/Products.png",
+    //   name: "Products",
+    // },
     {
       icon: "/assets/Image/Navigation/SalesReport.png",
       name: "Sales Report",
       slug: "/sale-report"
     },
-    {
-      icon: "/assets/Image/Navigation/Messages.png",
-      name: "Messages",
-    },
-    {
-      icon: "/assets/Image/Navigation/Settings.png",
-      name: "Settings",
-    },
+    // {
+    //   icon: "/assets/Image/Navigation/Messages.png",
+    //   name: "Messages",
+    // },
+    // {
+    //   icon: "/assets/Image/Navigation/Settings.png",
+    //   name: "Settings",
+    // },
     {
       icon: "/assets/Image/Navigation/SignOut.png",
       name: "Sign Out",
@@ -60,7 +60,13 @@ export class NavigationComponent {
   }
 
   ngOnInit() {
-    console.log(this.cookieService.get('loginToken'));
+    for (let i = 0; i < this.navigationOption.length; i++) {
+      if (window.location.href.includes(this.navigationOption[i].slug)) {
+        this.selectedNavigation = i
+        break
+      }
+      
+    }
   }
   RemoveCookie() {
     if (window.confirm("Would you like to logout?")) {
