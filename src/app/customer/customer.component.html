@@ -5,17 +5,17 @@
             <thead>
                 <tr>
                     <td>Id</td>
-                    <td>Restaurant</td>
-                    <td>Local</td>
+                    <td>Name</td>
+                    <td>Email</td>
                     <td>Status</td>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of listRestaurants?.suppliers" routerLink="/restaurant-details"
-                [queryParams]="{ restaurantid: item.id }">
+                <tr *ngFor="let item of listCustomers" routerLink="/customer-detail"
+                [queryParams]="{ customerid: item.id }">
                     <td>{{item.id}}</td>
-                    <td>{{item.restaurant_name}}</td>
-                    <td>{{item.address}}</td>
+                    <td>{{item.fullName}}</td>
+                    <td>{{item.email}}</td>
                     <td>{{item.status==1? "Hoạt động" : "Không Hoạt động"}}</td>
                 </tr>
             </tbody>
