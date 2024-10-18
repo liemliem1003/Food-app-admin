@@ -25,15 +25,15 @@ export class RestaurantDetailComponent {
       percentage: -10,
       icon: "/assets/Image/RestaurantDetails/TotalDishOrderedIcon.png"
     },
-    {
-      name: "Total Customer",
-      value: 10000,
-      percentage: 10,
-      icon: "/assets/Image/RestaurantDetails/TotalCustomerIcon.png"
-    }
+    // {
+    //   name: "Total Customer",
+    //   value: 10000,
+    //   percentage: 10,
+    //   icon: "/assets/Image/RestaurantDetails/TotalCustomerIcon.png"
+    // }
   ]
 
-  orderReport:Order[] = []
+  orderReport: Order[] = []
   orderReportStatus: { [key: string]: { color: string; bgColor: string; text: string } } = {
     completed: {
       color: "#50D1AA",
@@ -52,23 +52,7 @@ export class RestaurantDetailComponent {
     }
   }
 
-  mostOrder=[
-    {
-      img:"/assets/Image/RestaurantDetails/Dish.png",
-      name:"Spicy seasoned seafood noodles",
-      ordered: 80,
-    },
-    {
-      img:"/assets/Image/RestaurantDetails/Dish.png",
-      name:"Spicy seasoned seafood noodles",
-      ordered: 80,
-    },
-    {
-      img:"/assets/Image/RestaurantDetails/Dish.png",
-      name:"Spicy seasoned seafood noodles",
-      ordered: 80,
-    }
-  ]
+  mostOrder: MostOrder[] = []
 
   API: any = this.apiService.RestaurantAPI()
 
@@ -80,24 +64,38 @@ export class RestaurantDetailComponent {
       var startDate = new Date();
       var endDate = new Date();
       var dayNum = 7
-
+      var restaurantID = params['restaurantid']
       startDate.setDate(startDate.getDate() - dayNum);
 
       const formattedStartDate = startDate.toISOString().split('T')[0];
       const formattedEndDate = endDate.toISOString().split('T')[0];
-      this.API.getFoodOrderBySupplierForAdmin(params['restaurantid'], 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
-        console.log(data);
-        for (let item of data.content){
+      this.API.getFoodOrderBySupplierForAdmin(restaurantID, 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
+        for (let item of data.content) {
           this.orderReport.push(
             {
               customer: item.customer.fullName,
               menu: "menu 1",
               amount: this.AddCommaToNumber(item.total_price),
-              avatar: item.customer.imgUrl ? item.customer.imgUrl :"/assets/Image/RestaurantDetails/Avatar.png",
+              avatar: item.customer.imgUrl ? item.customer.imgUrl : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
             }
           )
         }
+      })
+
+      this.API.getMostOrdered(restaurantID, formattedStartDate, formattedEndDate, 10).then((data: any) => {
+        this.orderReport = data
+      })
+
+      this.API.getTotalOrdersByRestaurantById(restaurantID, formattedEndDate).then((data: any) => {
+        this.listinfo[1].value = data.todayOrderCount
+        this.listinfo[1].percentage = data.percentageChange
+      })
+
+      this.API.getTotalRevenueByRestaurantById(restaurantID, formattedEndDate).then((data: any) => {
+        console.log(data);
+        this.listinfo[0].value = data.todayRevenue
+        this.listinfo[0].percentage = data.percentageChange
       })
     })
 
@@ -118,4 +116,10 @@ interface Order {
   amount: number;
   avatar: string;
   status: string
+}
+
+interface MostOrder {
+  image_url: string;
+  food_name: string,
+  quantity_sold: number,
 }

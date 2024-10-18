@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="list-item">
+        <div class="item" *ngFor="let item of list">
+            <img [src]="item.img" alt="" class="logo">
+            <div class="info-group">
+                <div class="date">{{item.date}}</div>
+                <div class="name">{{item.name}}</div>
+                <div class="description">{{item.description}}</div>
+                <div class="stars-container">
+                    <img src="/assets/Image/CustomerDetails/YellowStar.png" alt="" class="star" *ngFor="let star of [].constructor(item.stars)">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -86,6 +86,26 @@ export class ApiserviceComponent {
         var api = this.apiUrl + str + `${id}?page=${page}&size=${limit}&sortBy=orderTime&sortDirection=${desc ? "desc" : "acs"}&startDate=${startDate}&endDate=${endDate}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();
 
+      },
+      getMostOrdered:(id:any,startDate:any,endDate:any,limit:any = 5) => {
+        var str = "report/top_selling_food_item/"
+        var api = this.apiUrl + str + `${id}?startDate=${startDate}&endDate=${endDate}&limit=${limit}`
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+
+      },
+      getTotalOrdersByRestaurantById: (id:any,date:string) => {
+        console.log(date);
+        
+        var str = "report/get_order_count_by_date_for_partner/"
+        var api = this.apiUrl + str + `${id}?date=${date}`
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+      },
+      getTotalRevenueByRestaurantById: (id:any,date:string) => {
+        console.log(date);
+        
+        var str = "report/get_revenue_by_date_for_partner/"
+        var api = this.apiUrl + str + `${id}?date=${date}`
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
       }
     }
   }

@@ -8,6 +8,7 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
 import { DevelopingComponent } from './developing/developing.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { CustomerDetail2Component } from './customer-detail2/customer-detail2.component';
 
 var mainComponent = new AppComponent()
 var login = mainComponent.login
@@ -17,6 +18,7 @@ var routeLogin: Routes = [
     { path: 'restaurant', component: RestaurantsComponent },
     { path: 'customer', component: CustomerComponent },
     { path: 'customer-detail', component: CustomerDetailComponent },
+    { path: 'customer-detail2', component: CustomerDetail2Component },
     { path: 'restaurant-details', component: RestaurantDetailComponent },
     { path: 'developing', component: DevelopingComponent },
     { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },

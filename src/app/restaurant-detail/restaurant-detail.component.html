@@ -59,10 +59,10 @@
         </div>
         <div class="item-group">
             <div class="item" *ngFor="let item of mostOrder">
-                <img [src]="item.img" alt="">
+                <img [src]="item.image_url" alt="">
                 <div class="info-group">
-                    <div class="name">{{item.name}}</div>
-                    <div class="ordered">{{item.ordered}} dishes ordered</div>
+                    <div class="name">{{item.food_name}}</div>
+                    <div class="ordered">{{item.quantity_sold}} dishes ordered</div>
                 </div>
             </div>
         </div>
