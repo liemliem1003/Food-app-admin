@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="detail-container">
+    <!-- <div class="detail-container">
         <div class="text">Details</div>
         <table CELLSPACING=0>
             <thead>
@@ -20,5 +20,20 @@
                 </tr>
             </tbody>
         </table>
+    </div> -->
+    <div class="list-item">
+        <div class="item" *ngFor="let item of listRestaurants?.suppliers" routerLink="/restaurant-details"
+        [queryParams]="{ restaurantid: item.id }">
+            <img [src]="item.img_url" alt="" class="logo">
+            <div class="info-group">
+                <div class="date">{{item.date}}</div>
+                <div class="name">{{item.restaurant_name}}</div>
+                <div class="description">{{item.description}}</div>
+                <div class="stars-container">
+                    <img src="/assets/Image/CustomerDetails/YellowStar.png" alt="" class="star" *ngFor="let star of [].constructor(NumberToFixed(item.total_star_rating))">
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>

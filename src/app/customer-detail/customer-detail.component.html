@@ -70,21 +70,17 @@
 
 </div> -->
 
-<div class="container">
-    ID: {{userInfo?.id}}
-    <br>
-    Email: {{userInfo?.email}}
-    <br>
-    Name: {{userInfo?.full_name}}
-    <br>
-    Gender: {{userInfo?.gender}}
-    <br>
-    Phone: {{userInfo?.phone_number}}
-    <br>
-    Role: {{userInfo?.role.name}}
-    <br>
-    Status: {{userInfo?.active == true ? "Is active" : "Is not active"}}
-    <br>
-    <button (click) ="UpdateStatus(userInfo?.active ? 0 : 1)"  >Click here to {{userInfo?.active ? "deactivate" : "activate"}}</button>
-    
+<div class="container user-info">
+    <div class="info">
+        <p>ID: {{userInfo?.id}}</p>
+        <p>Email: {{userInfo?.email}}</p>
+        <p>Name: {{userInfo?.full_name}}</p>
+        <p>Gender: {{userInfo?.gender}}</p>
+        <p>Phone: {{userInfo?.phone_number}}</p>
+        <p>Role: {{userInfo?.role.name}}</p>
+        <p>Status: {{userInfo?.active == true ? "Is active" : "Is not active"}}</p>
+        <button (click)="UpdateStatus(userInfo?.active ? 0 : 1)">
+            Click here to {{userInfo?.active ? "deactivate" : "activate"}}
+        </button>
+    </div>
 </div>

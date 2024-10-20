@@ -4,5 +4,26 @@
     background-color: #F9FAFB;
     position: relative;
     border: solid 1px #F9FAFB;
+}
 
+.filter-popup {
+    position: absolute;
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+}
+
+.item-to-filter {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.filter-popup .close{
+    position: absolute;
+    color: red;
+    top: -1px;
+    cursor: pointer;
+    right: 10px;
+    font-weight: bold;
 }

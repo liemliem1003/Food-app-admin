@@ -81,9 +81,9 @@ export class ApiserviceComponent {
         const api = this.apiUrl + str + id
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
-      getFoodOrderBySupplierForAdmin: (id: any, page: any = 0, limit: any = 5, desc: boolean, startDate: string, endDate: string) => {
+      getFoodOrderBySupplierForAdmin: (id: any, page: any = 0, limit: any = 5, desc: boolean, startDate: string, endDate: string,status:string="pending") => {
         var str = "food_orders/get_food_order_by_supplier_for_admin/"
-        var api = this.apiUrl + str + `${id}?page=${page}&size=${limit}&sortBy=orderTime&sortDirection=${desc ? "desc" : "acs"}&startDate=${startDate}&endDate=${endDate}`
+        var api = this.apiUrl + str + `${id}?page=${page}&size=${limit}&sortBy=orderTime&sortDirection=${desc ? "desc" : "acs"}&startDate=${startDate}&endDate=${endDate}&status=${status}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();
 
       },
@@ -94,15 +94,11 @@ export class ApiserviceComponent {
 
       },
       getTotalOrdersByRestaurantById: (id:any,date:string) => {
-        console.log(date);
-        
         var str = "report/get_order_count_by_date_for_partner/"
         var api = this.apiUrl + str + `${id}?date=${date}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
       getTotalRevenueByRestaurantById: (id:any,date:string) => {
-        console.log(date);
-        
         var str = "report/get_revenue_by_date_for_partner/"
         var api = this.apiUrl + str + `${id}?date=${date}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();

@@ -21,4 +21,7 @@ export class RestaurantsComponent {
     })
   
   }
+  NumberToFixed(number: number) {
+    return Number(Number(number).toFixed(0))
+  }
 }

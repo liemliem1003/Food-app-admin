@@ -52,6 +52,8 @@ export class RestaurantDetailComponent {
     }
   }
 
+  popupFilterStatus: boolean = false
+
   mostOrder: MostOrder[] = []
 
   API: any = this.apiService.RestaurantAPI()
@@ -78,13 +80,15 @@ export class RestaurantDetailComponent {
               amount: this.AddCommaToNumber(item.total_price),
               avatar: item.customer.imgUrl ? item.customer.imgUrl : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
+              payment_method: item.payment_method,
+              payment_status: item.payment_status
             }
           )
         }
       })
 
       this.API.getMostOrdered(restaurantID, formattedStartDate, formattedEndDate, 10).then((data: any) => {
-        this.orderReport = data
+        this.mostOrder = data
       })
 
       this.API.getTotalOrdersByRestaurantById(restaurantID, formattedEndDate).then((data: any) => {
@@ -93,7 +97,6 @@ export class RestaurantDetailComponent {
       })
 
       this.API.getTotalRevenueByRestaurantById(restaurantID, formattedEndDate).then((data: any) => {
-        console.log(data);
         this.listinfo[0].value = data.todayRevenue
         this.listinfo[0].percentage = data.percentageChange
       })
@@ -109,13 +112,49 @@ export class RestaurantDetailComponent {
       number = number.replace(pattern, "$1,$2");
     return number;
   }
+
+  ShowPopupFilter() {
+    this.popupFilterStatus = !this.popupFilterStatus
+  }
+
+  Filter(status: any) {
+    this.orderReport=[]
+    this.route.queryParams.subscribe(params => {
+      var startDate = new Date();
+      var endDate = new Date();
+      var dayNum = 7
+      var restaurantID = params['restaurantid']
+      startDate.setDate(startDate.getDate() - dayNum);
+
+      const formattedStartDate = startDate.toISOString().split('T')[0];
+      const formattedEndDate = endDate.toISOString().split('T')[0];
+      this.API.getFoodOrderBySupplierForAdmin(restaurantID, 0, 10, true, formattedStartDate, formattedEndDate,status).then((data: any) => {
+        for (let item of data.content) {
+          this.orderReport.push(
+            {
+              customer: item.customer.fullName,
+              menu: "menu 1",
+              amount: this.AddCommaToNumber(item.total_price),
+              avatar: item.customer.imgUrl ? item.customer.imgUrl : "/assets/Image/RestaurantDetails/Avatar.png",
+              status: item.status,
+              payment_method: item.payment_method,
+              payment_status: item.payment_status
+            }
+          )
+        }
+      })
+    })
+  }
+
 }
 interface Order {
   customer: string;
   menu: string;
   amount: number;
   avatar: string;
-  status: string
+  status: string;
+  payment_method: string;
+  payment_status: number
 }
 
 interface MostOrder {

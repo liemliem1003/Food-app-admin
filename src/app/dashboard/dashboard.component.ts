@@ -14,30 +14,30 @@ export class DashboardComponent {
   todaySales: any = [
     {
       icon: "/assets/Image/Dashboard/TotalSalesIcon.png",
-      value: "1k VND",
+      value: "0 VND",
       title: "Total Sales",
-      description: "+8%",
+      description: "0%",
       class: "total-sales"
     },
     {
       icon: "/assets/Image/Dashboard/TotalOrdersIcon.png",
-      value: "300",
+      value: "0",
       title: "Total Orders",
-      description: "+5%",
+      description: "0",
       class: "total-orders"
     },
     {
       icon: "/assets/Image/Dashboard/ProductsSoldIcon.png",
-      value: "5",
+      value: "0",
       title: "Products Sold",
-      description: "+1.2%",
+      description: "0%",
       class: "products-sold"
     },
     {
       icon: "/assets/Image/Dashboard/NewCostumersIcon.png",
-      value: "8",
+      value: "0",
       title: "New Costumers",
-      description: "+0.5%",
+      description: "0",
       class: "new-costumers"
     }
   ]
@@ -283,6 +283,8 @@ export class DashboardComponent {
     var formattedStartDate = startDate.toISOString().split('T')[0];
 
     await this.API.getRevenueByDateRangeForAdmin(formattedStartDate, formattedDate).then((data: any) => {
+      console.log(data);
+      
       const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       for (let i = 0; i < dayNum; i++) {
 
@@ -300,7 +302,6 @@ export class DashboardComponent {
       }
     })
     await this.API.get_top_products(4).then((data: any) => {
-      console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.topProducts.push(
           {

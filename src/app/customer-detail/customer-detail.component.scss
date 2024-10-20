@@ -174,3 +174,35 @@
     font-size: 12px;
     color: #ABBBC2;
 }
+
+
+.user-info {
+    padding: 20px;
+    background-color: #f5f5f5; /* Light background for the info block */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.user-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.user-info button {
+    display: block;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #FF7A1C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.user-info button:hover {
+    background-color: #e06b1b;
+}

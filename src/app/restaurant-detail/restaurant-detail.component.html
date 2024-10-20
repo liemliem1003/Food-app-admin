@@ -17,14 +17,26 @@
         <div class="bottom-left-group">
             <div class="info-group">
                 <div class="name">Order Report</div>
-                <button>Filter</button>
+                <button (click)="ShowPopupFilter()">Filter</button>
+                <div class="filter-popup" *ngIf="popupFilterStatus">
+                    <div class="close" (click)="ShowPopupFilter()">x</div>
+                    <div class="item-to-filter">
+                        <label for="status">Status:</label>
+                        <select name="status" #status (change)="Filter(status.value)">
+                            <option value="pending">Pending</option>
+                            <option value="preparing">Preparing</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <table CELLSPACING=0>
                 <thead>
                     <tr>
                         <td>Customer</td>
-                        <td>Menu</td>
+                        <td>Payment Method</td>
                         <td>Total Payment</td>
+                        <td>Total Status</td>
                         <td>Status</td>
                     </tr>
                 </thead>
@@ -35,17 +47,20 @@
                             <span>{{item.customer}}</span>
                         </td>
                         <td>
-                            {{item.menu}}
+                            {{item.payment_method}}
+                        </td>
+                        <td>
+                            {{item.payment_status == 0 ? "Chưa thanh toán" :
+                            "Đã Thanh Toán"}}
                         </td>
                         <td>
                             {{item.amount}} VND
                         </td>
                         <td>
                             <span
-                            [style.--color] = "orderReportStatus[item.status].color"
-                            [style.--bgColor] = "orderReportStatus[item.status].bgColor"
-                            >{{orderReportStatus[item.status].text}}
-                        </span>
+                                [style.--color]="orderReportStatus[item.status]?.color"
+                                [style.--bgColor]="orderReportStatus[item.status]?.bgColor">{{orderReportStatus[item.status]?.text}}
+                            </span>
                         </td>
                     </tr>
                 </tbody>
@@ -59,13 +74,16 @@
         </div>
         <div class="item-group">
             <div class="item" *ngFor="let item of mostOrder">
-                <img [src]="item.image_url" alt="">
+                <img [src]="item.image_url" alt>
                 <div class="info-group">
                     <div class="name">{{item.food_name}}</div>
-                    <div class="ordered">{{item.quantity_sold}} dishes ordered</div>
+                    <div class="ordered">{{item.quantity_sold}} dishes
+                        ordered</div>
                 </div>
             </div>
         </div>
     </div>
-
+    
 </div>
+
+

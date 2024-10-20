@@ -60,7 +60,7 @@
 
 .bottom-left-group{
     background-color: #1F1D2B;
-    width: 649px;
+    width: 800px;
     border-radius: 8px;
     border: solid 0.1px #1F1D2B;
 }
@@ -93,7 +93,13 @@
     display: flex;
     align-items: center;
     margin: 24px 16px 15px 24px;
+    position: relative;
 }
+.bottom-left-group .info-group .filter-popup{
+    right: 0px;
+    color: black;
+}
+
 
 .bottom-left-group .info-group .name{
     font-weight: bold;
@@ -164,6 +170,7 @@
 .container .right-group .item-group img{
     margin-right: 16px;
     clip-path: circle();
+    width: 70px;
 }
 
 .container .right-group .item-group .info-group .name{
