@@ -2,8 +2,7 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { Component, Injectable } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
   providedIn: 'root' // This makes the service available globally
 })
@@ -16,6 +15,24 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ApiserviceComponent {
   constructor(private http: HttpClient, private cookieService: CookieService) {
+    const helper = new JwtHelperService();
+    var Token = this.cookieService.get('loginToken')
+    console.log(Token);
+
+    if(Token != ""){
+      const decodedToken = helper.decodeToken(Token);
+      console.log(decodedToken);
+      var date = new Date(decodedToken.exp)
+      var toDay = new Date()
+      if(toDay<date){
+        var refreshToken = localStorage.getItem("refreshKey") || ""
+        var email = localStorage.getItem("email") || ""
+        this.RefreshToken(refreshToken,email)
+      }
+    }
+
+    
+    
   }
   httpRequest: any = this.http
   private apiUrl = 'http://14.225.206.203:8080/api/v1/';
@@ -31,6 +48,17 @@ export class ApiserviceComponent {
     const api = this.apiUrl + "users/login"
     return HTTPRequest.post(api, credentials).toPromise();
   }
+
+  RefreshToken(refreshToken:string,email:string){
+    const HTTPRequest = this.http;
+    const api = this.apiUrl + "token/refresh-token"
+    const body = {
+      refreshToken: refreshToken,
+      email:email
+    }
+    return HTTPRequest.put(api, body,this.httpOptions).toPromise();
+  }
+
   DashboardAPI() {
     const HTTPRequest = this.http;
     return {
@@ -73,7 +101,7 @@ export class ApiserviceComponent {
     return {
       getAllRestaurants: (keyword: string, page: number, limit: number) => {
         var str = "supplier_info/get_all_suppliers?"
-        const api = this.apiUrl + str + `limit=${limit}&$page=${page}`
+        const api = this.apiUrl + str + `limit=${limit}&$page=${page}&keyword=${keyword}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
       getRestaurantById: (id: any) => {

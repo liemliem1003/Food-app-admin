@@ -24,4 +24,12 @@ export class RestaurantsComponent {
   NumberToFixed(number: number) {
     return Number(Number(number).toFixed(0))
   }
+
+  Search(text:String){
+    this.API.getAllRestaurants(text,0,10).then((data:any)=>{
+      console.log(data);
+      this.listRestaurants = data
+    })
+  }
+
 }

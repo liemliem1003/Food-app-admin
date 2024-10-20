@@ -1,5 +1,9 @@
+.container{
+    // border: solid red 1px;
+}
+
 .list-item{
-    margin: 96px 80px;
+    margin: 20px 80px;
 }
 
 .list-item .item{
@@ -40,4 +44,39 @@
 
 .list-item .item .info-group .stars-container .star{
     width: 25px;
+}
+
+.search{
+    position: relative;
+    margin-top: 200px;
+    margin-left: 400px;
+    margin: auto;
+    display: flex;
+    cursor: pointer;
+}
+
+
+.search input{
+    border: solid black 1px;
+    width: 385px;
+    padding: 16.5px 64px 16.5px 64px;
+    font-size: 18px;
+    background-color: #F9FAFB;
+    border-radius: 16px 0 0 16px;
+}
+
+.search button{
+    border: solid black 1px;
+    padding: 10.5px 20px 10.5px 20px;
+    font-size: 18px;
+    background-color: #F9FAFB;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border-radius: 0 16px 16px 0 ;
+}
+
+.search input::placeholder{
+    margin-left: 20px;
+    color: rebeccapurple;
 }
