@@ -32,12 +32,23 @@
     justify-content: left;
     align-items: center;
     margin: 16px auto 8px 16px;
+    position: relative;
     display: flex;
 }
 
 .top-left-group .item .item-group-info .percentage{
     margin: 0 6px 0 12px;
 }
+
+.top-left-group .item .item-group-info button{
+    color: white;
+    width: 100px;
+    height: 30px;
+    background-color: #FFB572;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 
 .top-left-group .item .item-group-info .icon{
     padding: 10px;
@@ -100,7 +111,16 @@
     color: black;
 }
 
+.item-group-info .item-to-filter{
+    color:red;
+    // position: absolute;
+    padding: 11px 5px;
+}
 
+.item-group-info .filter-popup{
+    top:0;
+    right:10px
+}
 .bottom-left-group .info-group .name{
     font-weight: bold;
     font-size: 20px;

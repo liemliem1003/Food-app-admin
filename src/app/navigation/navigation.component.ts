@@ -18,11 +18,11 @@ export class NavigationComponent {
       name: "Dashboard",
       slug: "/dashboard"
     },
-    {
-      icon: "/assets/Image/Navigation/Leaderboard.png",
-      name: "Leaderboard",
-      slug: "/developing"
-    },
+    // {
+    //   icon: "/assets/Image/Navigation/Leaderboard.png",
+    //   name: "Leaderboard",
+    //   slug: "/developing"
+    // },
     {
       icon: "/assets/Image/Navigation/Leaderboard.png",
       name: "Nhà hàng",
@@ -33,21 +33,21 @@ export class NavigationComponent {
       name: "Costumer",
       slug: "/customer"
     },
-    {
-      icon: "/assets/Image/Navigation/Products.png",
-      name: "Products",
-      slug: "/developing"
-    },
+    // {
+    //   icon: "/assets/Image/Navigation/Products.png",
+    //   name: "Products",
+    //   slug: "/developing"
+    // },
     {
       icon: "/assets/Image/Navigation/SalesReport.png",
       name: "Sales Report",
       slug: "/sale-report"
     },
-    {
-      icon: "/assets/Image/Navigation/Messages.png",
-      name: "Messages",
-      slug: "/developing"
-    },
+    // {
+    //   icon: "/assets/Image/Navigation/Messages.png",
+    //   name: "Messages",
+    //   slug: "/developing"
+    // },
     {
       icon: "/assets/Image/Navigation/Settings.png",
       name: "Settings",

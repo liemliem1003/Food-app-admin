@@ -301,7 +301,6 @@ export class SalesreportComponent {
       var percentage = this.circleChart.options[i].value/total
       this.circleChart.options[i].rotate = rotate
       this.circleChart.options[i].percentage = percentage
-      // debugger
       rotate += percentage*360
       var polygon = "polygon(50% 50%, 0 0, "
       while (true) {

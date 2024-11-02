@@ -22,7 +22,6 @@ export class LoginComponent {
       console.log(data);
       var token = data.token
       this.cookieService.set('loginToken', token, 7, '/');
-      debugger
       localStorage.setItem("refreshKey", data.refresh_token);
       localStorage.setItem("email", data.email);
       location.reload();

@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './restaurant-detail.component.scss'
 })
 export class RestaurantDetailComponent {
-
+  restaurantID: any
   listinfo = [
     {
       name: "Total Revenue",
@@ -25,12 +25,12 @@ export class RestaurantDetailComponent {
       percentage: -10,
       icon: "/assets/Image/RestaurantDetails/TotalDishOrderedIcon.png"
     },
-    // {
-    //   name: "Total Customer",
-    //   value: 10000,
-    //   percentage: 10,
-    //   icon: "/assets/Image/RestaurantDetails/TotalCustomerIcon.png"
-    // }
+    {
+      name: "Cash",
+      value: 0,
+      percentage: 0,
+      icon: "/assets/Image/RestaurantDetails/TotalCustomerIcon.png"
+    }
   ]
 
   orderReport: Order[] = []
@@ -53,6 +53,9 @@ export class RestaurantDetailComponent {
   }
 
   popupFilterStatus: boolean = false
+  popupUpdateCash: boolean = false
+
+
 
   mostOrder: MostOrder[] = []
 
@@ -62,16 +65,17 @@ export class RestaurantDetailComponent {
   constructor(private apiService: ApiserviceComponent, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
       var startDate = new Date();
       var endDate = new Date();
       var dayNum = 7
-      var restaurantID = params['restaurantid']
+      this.restaurantID = params['restaurantid']
       startDate.setDate(startDate.getDate() - dayNum);
 
       const formattedStartDate = startDate.toISOString().split('T')[0];
       const formattedEndDate = endDate.toISOString().split('T')[0];
-      this.API.getFoodOrderBySupplierForAdmin(restaurantID, 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
+      this.API.getFoodOrderBySupplierForAdmin(this.restaurantID, 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
         for (let item of data.content) {
           this.orderReport.push(
             {
@@ -86,17 +90,19 @@ export class RestaurantDetailComponent {
           )
         }
       })
-
-      this.API.getMostOrdered(restaurantID, formattedStartDate, formattedEndDate, 10).then((data: any) => {
+      this.API.getRestaurantById(this.restaurantID).then((data: any) => {
+        this.listinfo[2].value = data.cash
+      })
+      this.API.getMostOrdered(this.restaurantID, formattedStartDate, formattedEndDate, 10).then((data: any) => {
         this.mostOrder = data
       })
 
-      this.API.getTotalOrdersByRestaurantById(restaurantID, formattedEndDate).then((data: any) => {
+      this.API.getTotalOrdersByRestaurantById(this.restaurantID, formattedEndDate).then((data: any) => {
         this.listinfo[1].value = data.todayOrderCount
         this.listinfo[1].percentage = data.percentageChange
       })
 
-      this.API.getTotalRevenueByRestaurantById(restaurantID, formattedEndDate).then((data: any) => {
+      this.API.getTotalRevenueByRestaurantById(this.restaurantID, formattedEndDate).then((data: any) => {
         this.listinfo[0].value = data.todayRevenue
         this.listinfo[0].percentage = data.percentageChange
       })
@@ -117,8 +123,28 @@ export class RestaurantDetailComponent {
     this.popupFilterStatus = !this.popupFilterStatus
   }
 
+  ShowPopupUpdateCash() {
+    this.popupUpdateCash = !this.popupUpdateCash
+  }
+
+  UpdateCash(amount: any) {
+    if (amount != 0) {
+      if (window.confirm("Would you like to update Cash")) {
+        this.API.putUpdateCash(amount, this.restaurantID).then((data: any) => {
+          console.log(data);
+          if (data.status == "success") {
+            window.alert("Amount is updated!")
+            location.reload()
+          }
+        })
+      }
+    } else {
+      window.alert("Input amount!")
+    }
+  }
+
   Filter(status: any) {
-    this.orderReport=[]
+    this.orderReport = []
     this.route.queryParams.subscribe(params => {
       var startDate = new Date();
       var endDate = new Date();
@@ -128,7 +154,7 @@ export class RestaurantDetailComponent {
 
       const formattedStartDate = startDate.toISOString().split('T')[0];
       const formattedEndDate = endDate.toISOString().split('T')[0];
-      this.API.getFoodOrderBySupplierForAdmin(restaurantID, 0, 10, true, formattedStartDate, formattedEndDate,status).then((data: any) => {
+      this.API.getFoodOrderBySupplierForAdmin(restaurantID, 0, 10, true, formattedStartDate, formattedEndDate, status).then((data: any) => {
         for (let item of data.content) {
           this.orderReport.push(
             {

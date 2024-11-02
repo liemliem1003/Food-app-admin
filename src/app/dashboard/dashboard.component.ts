@@ -283,8 +283,6 @@ export class DashboardComponent {
     var formattedStartDate = startDate.toISOString().split('T')[0];
 
     await this.API.getRevenueByDateRangeForAdmin(formattedStartDate, formattedDate).then((data: any) => {
-      console.log(data);
-      
       const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
       for (let i = 0; i < dayNum; i++) {
 

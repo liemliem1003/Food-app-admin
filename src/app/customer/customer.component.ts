@@ -16,9 +16,9 @@ export class CustomerComponent {
   API:any = this.apiService.CustomerAPI()
   ngOnInit() {
     this.API.getAllCustomers("",0,10).then((data:any)=>{
-      this.listCustomers = data.content
       console.log(data);
       
+      this.listCustomers = data.content
     })
   
   }

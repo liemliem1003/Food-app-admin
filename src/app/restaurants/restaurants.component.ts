@@ -16,7 +16,6 @@ export class RestaurantsComponent {
   API:any = this.apiService.RestaurantAPI()
   ngOnInit() {
     this.API.getAllRestaurants("",0,10).then((data:any)=>{
-      console.log(data);
       this.listRestaurants = data
     })
   

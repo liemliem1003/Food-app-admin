@@ -17,11 +17,8 @@ export class ApiserviceComponent {
   constructor(private http: HttpClient, private cookieService: CookieService) {
     const helper = new JwtHelperService();
     var Token = this.cookieService.get('loginToken')
-    console.log(Token);
-
     if(Token != ""){
       const decodedToken = helper.decodeToken(Token);
-      console.log(decodedToken);
       var date = new Date(decodedToken.exp)
       var toDay = new Date()
       if(toDay<date){
@@ -104,6 +101,12 @@ export class ApiserviceComponent {
         const api = this.apiUrl + str + `limit=${limit}&$page=${page}&keyword=${keyword}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
+      putUpdateCash: (amount:number,id:any) =>{
+        var str = "supplier_info/update_cash/"
+        const api = this.apiUrl + str + `${id}?cash=${amount}`
+        return HTTPRequest.put(api, {},this.httpOptions).toPromise();
+
+      },
       getRestaurantById: (id: any) => {
         var str = "supplier_info/get_supplier_by_id/"
         const api = this.apiUrl + str + id
@@ -138,8 +141,7 @@ export class ApiserviceComponent {
     return {
       getAllCustomers: (keyword: string, page: number, limit: number) => {
         var str = "users/get_user_by_role/3?"
-        const api = this.apiUrl + str + `limit=${limit}&$page=${page}&keyword=${keyword}`
-        // const api = this.apiUrl + str + `limit=${limit}&$page=${page}&keyword=123123`
+        const api = this.apiUrl + str + `size=${limit}&page=${page}&keyword=${keyword}`
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
       getCustomerById: (id:any) =>{
