@@ -39,6 +39,13 @@ export class DashboardComponent {
       title: "New Costumers",
       description: "0",
       class: "new-costumers"
+    },
+    {
+      icon: "/assets/Image/Dashboard/Download.png",
+      value: "0",
+      title: "Download",
+      description: "0",
+      class: "total-sales"
     }
   ]
 
@@ -214,7 +221,8 @@ export class DashboardComponent {
       mainColor: "FF8F0D",
       color: "FF8900",
       saleBgColor: "FEF6E6"
-    }
+    },
+    
   ]
 
   volumeVsServiceLevel: any = {
@@ -274,6 +282,9 @@ export class DashboardComponent {
     await this.API.getUserCountByDate(formattedDate).then((data: any) => {
       this.todaySales[3].value = this.FormatNumber(data.totalUserCount)
       this.todaySales[3].description = data.percentageChange + "%"
+    })
+    await this.API.get_download().then((data:any)=>{
+      this.todaySales[4].value = data
     })
 
     //

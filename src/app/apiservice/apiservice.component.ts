@@ -32,7 +32,7 @@ export class ApiserviceComponent {
     
   }
   httpRequest: any = this.http
-  private apiUrl = 'http://14.225.206.203:8080/api/v1/';
+  private apiUrl = 'https://lequocanh.com:8443/api/v1/';
   apiToken = this.cookieService.get('loginToken')
   private httpOptions = {
     headers: new HttpHeaders({
@@ -89,6 +89,11 @@ export class ApiserviceComponent {
       get_top_products: (limit: number) => {
         var str = "report/get_top_supplier_by_orders_for_admin?limit="
         const api = this.apiUrl + str + limit
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+      },
+      get_download: () => {
+        var str = "download/count"
+        const api = this.apiUrl + str
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       }
     }
