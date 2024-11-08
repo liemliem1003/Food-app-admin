@@ -34,9 +34,9 @@
                     <div class="item-to-filter">
                         <label for="status">Status:</label>
                         <select name="status" #status (change)="Filter(status.value)">
-                            <option value="pending">Pending</option>
-                            <option value="preparing">Preparing</option>
-                            <option value="completed">Completed</option>
+                            <option value="thất bại">Failed</option>
+                            <option value="đang giao">Preparing</option>
+                            <option value="hoàn thành" selected>Completed</option>
                         </select>
                     </div>
                 </div>
@@ -46,8 +46,9 @@
                     <tr>
                         <td>Customer</td>
                         <td>Payment Method</td>
-                        <td>Total Payment</td>
-                        <td>Total Status</td>
+                        <td>Payment Status</td>
+                        <td>Total Price</td>
+                        <td>Order Time</td>
                         <td>Status</td>
                     </tr>
                 </thead>
@@ -66,6 +67,9 @@
                         </td>
                         <td>
                             {{item.amount}} VND
+                        </td>
+                        <td>
+                            {{item.order_time}}
                         </td>
                         <td>
                             <span

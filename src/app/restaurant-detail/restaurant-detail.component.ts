@@ -45,10 +45,10 @@ export class RestaurantDetailComponent {
       bgColor: "#363455",
       text: "Preparing"
     },
-    pending: {
+    failed: {
       color: "#FFB572",
       bgColor: "#4C3B39",
-      text: "Pending"
+      text: "Failed"
     }
   }
 
@@ -77,12 +77,21 @@ export class RestaurantDetailComponent {
       const formattedEndDate = endDate.toISOString().split('T')[0];
       this.API.getFoodOrderBySupplierForAdmin(this.restaurantID, 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
         for (let item of data.content) {
+          if (item.status == "hoàn thành") {
+            item.status = "completed"
+          } else if (item.status == "đang giao") {
+            item.status = "preparing"
+          } else if (item.status == "thất bại") {
+            item.status = "failed"
+          }
+          item.order_time = new Date(item.order_time).toISOString().split('T')[0];
           this.orderReport.push(
             {
-              customer: item.customer.fullName,
+              customer: item.customer_name,
               menu: "menu 1",
+              order_time:item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
-              avatar: item.customer.imgUrl ? item.customer.imgUrl : "/assets/Image/RestaurantDetails/Avatar.png",
+              avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
               payment_status: item.payment_status
@@ -156,12 +165,22 @@ export class RestaurantDetailComponent {
       const formattedEndDate = endDate.toISOString().split('T')[0];
       this.API.getFoodOrderBySupplierForAdmin(restaurantID, 0, 10, true, formattedStartDate, formattedEndDate, status).then((data: any) => {
         for (let item of data.content) {
+          if (item.status == "hoàn thành") {
+            item.status = "completed"
+          } else if (item.status == "đang giao") {
+            item.status = "preparing"
+          } else if (item.status == "thất bại") {
+            item.status = "failed"
+          }
+          item.order_time = new Date(item.order_time).toISOString().split('T')[0];
+
           this.orderReport.push(
             {
-              customer: item.customer.fullName,
+              customer: item.customer_name,
               menu: "menu 1",
+              order_time:item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
-              avatar: item.customer.imgUrl ? item.customer.imgUrl : "/assets/Image/RestaurantDetails/Avatar.png",
+              avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
               payment_status: item.payment_status
@@ -180,6 +199,7 @@ interface Order {
   avatar: string;
   status: string;
   payment_method: string;
+  order_time:string;
   payment_status: number
 }
 

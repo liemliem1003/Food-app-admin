@@ -11,11 +11,11 @@
         </div>
         <div class="contents">
             <div [class]="item.class+' content-item'"
-                *ngFor="let item of todaySales">
+                *ngFor="let item of todaySales, let i = index">
                 <img [src]="item.icon" alt class="icon">
                 <div class="value">{{item.value}}</div>
                 <div class="title">{{item.title}}</div>
-                <div class="description">{{item.description}} from
+                <div class="description" *ngIf="i!=4">{{item.description}} from
                     yesterday</div>
             </div>
         </div>
