@@ -10,6 +10,7 @@
     display: flex;
     cursor: pointer;
     margin-bottom: 48px;
+    font-family: Arial;
 }
 
 .list-item .item:hover{
@@ -36,7 +37,7 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 8px;
-
+    font-family: Arial;
 }
 
 .list-item .item .info-group .description{

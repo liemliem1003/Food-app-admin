@@ -120,8 +120,6 @@ export class ApiserviceComponent {
       getFoodOrderBySupplierForAdmin: (id: any, page: any = 0, limit: any = 5, desc: boolean, startDate: string, endDate: string,status:string="hoàn thành") => {
         var str = "food_orders/get_food_order_by_supplierId_and_status/"
         var api = this.apiUrl + str + `${id}?page=${page}&size=${limit}&sortBy=orderTime&sortDirection=${desc ? "desc" : "acs"}&startDate=${startDate}&endDate=${endDate}&status=${status}`
-        console.log(api);
-        
         return HTTPRequest.get(api, this.httpOptions).toPromise();
 
       },

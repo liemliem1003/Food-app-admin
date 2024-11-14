@@ -26,7 +26,6 @@ export class RestaurantsComponent {
 
   Search(text:String){
     this.API.getAllRestaurants(text,0,10).then((data:any)=>{
-      console.log(data);
       this.listRestaurants = data
     })
   }

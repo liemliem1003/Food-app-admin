@@ -20,5 +20,8 @@
                 </tr>
             </tbody>
         </table>
+        <div class="paging">
+            <button *ngFor="let item of [].constructor(paging.numberOfPage), let i = index" (click)="LoadData(i)" [class]="i==paging.currPage ? 'selected' : ''">{{i + 1}}</button>
+        </div>
     </div>
 </div>

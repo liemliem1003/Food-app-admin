@@ -140,7 +140,6 @@ export class RestaurantDetailComponent {
     if (amount != 0) {
       if (window.confirm("Would you like to update Cash")) {
         this.API.putUpdateCash(amount, this.restaurantID).then((data: any) => {
-          console.log(data);
           if (data.status == "success") {
             window.alert("Amount is updated!")
             location.reload()

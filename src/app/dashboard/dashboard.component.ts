@@ -379,4 +379,7 @@ export class DashboardComponent {
     }
     this.volumeVsServiceLevel.maxValue = maxValue
   }
+  NumberToFix(number:number){
+    return Number(number).toFixed(1)
+  }
 }

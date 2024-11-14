@@ -19,14 +19,12 @@ export class LoginComponent {
       password: password,
     }
     this.apiService.LoginAPI(credentials).then((data:any)=>{
-      console.log(data);
       var token = data.token
       this.cookieService.set('loginToken', token, 7, '/');
       localStorage.setItem("refreshKey", data.refresh_token);
       localStorage.setItem("email", data.email);
       location.reload();
     }).catch((error: any) => {
-      console.log(error);
       alert("Username or Password is incorrect!!!")
     })
   }

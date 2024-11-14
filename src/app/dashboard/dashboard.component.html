@@ -113,7 +113,7 @@
                         <td class="sales">
                             <div
                                 [style.--color]="'#' + item.color"
-                                [style.--saleBgColor]="'#' + item.saleBgColor">{{item.sales*100}}%</div>
+                                [style.--saleBgColor]="'#' + item.saleBgColor">{{NumberToFix(item.sales*100)}}%</div>
                         </td>
                     </tr>
                 </tbody>

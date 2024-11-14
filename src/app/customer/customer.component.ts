@@ -12,14 +12,22 @@ import { RouterLink } from '@angular/router';
 })
 export class CustomerComponent {
   listCustomers:any
+  paging={
+    currPage:0,
+    numberOfPage:0,
+    limit:10
+  }
   constructor(private apiService: ApiserviceComponent) { }
   API:any = this.apiService.CustomerAPI()
   ngOnInit() {
-    this.API.getAllCustomers("",0,10).then((data:any)=>{
-      console.log(data);
-      
+    this.LoadData(this.paging.currPage)
+  }
+  LoadData(page:number){
+    this.paging.currPage = page
+    this.API.getAllCustomers("",page,this.paging.limit).then((data:any)=>{
       this.listCustomers = data.content
+      console.log(data);
+      this.paging.numberOfPage=data.totalPages
     })
-  
   }
 }
