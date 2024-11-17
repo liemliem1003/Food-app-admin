@@ -356,6 +356,7 @@ export class SalesreportComponent {
       status == 2 ? status = 1 : status = 2
       this.API.putUpdateWithDrawStatus(id, status).then((data: any) => {
         console.log(data);
+        this.LoadData(this.page.curPage, this.page.limit)
       })
     }
   }

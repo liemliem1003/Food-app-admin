@@ -1,6 +1,5 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
@@ -9,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Component({
   selector: 'app-apiservice',
   standalone: true,
-  imports: [HttpClientModule, RouterOutlet],
+  imports: [HttpClientModule],
   templateUrl: './apiservice.component.html',
   styleUrl: './apiservice.component.css'
 })
@@ -170,7 +169,7 @@ export class ApiserviceComponent {
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
       putUpdateWithDrawStatus:(id:number,status:number) =>{
-        var str ="supplier_infor/update_withdraw_status/" + id
+        var str ="supplier_info/update_withdraw_status/" + id
         const api = this.apiUrl + str + `?status=${status}`
         return HTTPRequest.put(api, {},this.httpOptions).toPromise();
 
