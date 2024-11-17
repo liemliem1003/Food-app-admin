@@ -16,7 +16,7 @@
 
 .top-left-group{
     display: flex;
-    width: 667px;
+    width: 896px;
 }
 
 .top-left-group .item{
@@ -191,6 +191,7 @@
     margin-right: 16px;
     clip-path: circle();
     width: 70px;
+    height: 40px;
 }
 
 .container .right-group .item-group .info-group .name{
@@ -200,4 +201,31 @@
 .container .right-group .item-group .info-group .ordered{
     font-size: 12px;
     color: #ABBBC2;
+}
+
+.paging {
+    display: flex;
+    justify-content: center;
+}
+
+.paging button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30px;
+    background-color: #ff7a1c;
+    border: none;
+    transition: 0.4s;
+}
+
+.paging button:hover {
+    border-radius: 10px;
+}
+
+.paging button.selected {
+    border-radius: 10px;
 }

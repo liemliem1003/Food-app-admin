@@ -434,3 +434,44 @@
     background-image: linear-gradient(to right,#A36BFD, #6B8AEB);;
     border-radius: 8px;
 }
+.paging {
+    display: flex;
+    justify-content: center;
+}
+
+.paging button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30px;
+    background-color: #ff7a1c;
+    border: none;
+    transition: 0.4s;
+}
+
+.paging button:hover {
+    border-radius: 10px;
+}
+
+.paging button.selected {
+    border-radius: 10px;
+}
+
+button.update-status{
+    color: red;
+    margin-left: 10px;
+    font-size: 12px;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+button.update-status:hover{
+    color: white;
+    background-color: black;
+}

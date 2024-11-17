@@ -30,7 +30,7 @@ export class NavigationComponent {
     },
     {
       icon: "/assets/Image/Navigation/Costumer.png",
-      name: "Costumer",
+      name: "Customer",
       slug: "/customer"
     },
     // {
@@ -40,7 +40,7 @@ export class NavigationComponent {
     // },
     {
       icon: "/assets/Image/Navigation/SalesReport.png",
-      name: "Sales Report",
+      name: "Withdraw",
       slug: "/sale-report"
     },
     // {

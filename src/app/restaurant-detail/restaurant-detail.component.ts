@@ -12,6 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RestaurantDetailComponent {
   restaurantID: any
+  paymentInfo = []
+  OrderReportPaging: number = 0
+  OrderReportCurrPage: number = 0
   listinfo = [
     {
       name: "Total Revenue",
@@ -30,7 +33,7 @@ export class RestaurantDetailComponent {
       value: 0,
       percentage: 0,
       icon: "/assets/Image/RestaurantDetails/TotalCustomerIcon.png"
-    }
+    },
   ]
 
   orderReport: Order[] = []
@@ -76,6 +79,7 @@ export class RestaurantDetailComponent {
       const formattedStartDate = startDate.toISOString().split('T')[0];
       const formattedEndDate = endDate.toISOString().split('T')[0];
       this.API.getFoodOrderBySupplierForAdmin(this.restaurantID, 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
+        this.OrderReportPaging = data.totalPages
         for (let item of data.content) {
           if (item.status == "hoàn thành") {
             item.status = "completed"
@@ -89,7 +93,7 @@ export class RestaurantDetailComponent {
             {
               customer: item.customer_name,
               menu: "menu 1",
-              order_time:item.order_time,
+              order_time: item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
               avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
@@ -101,6 +105,9 @@ export class RestaurantDetailComponent {
       })
       this.API.getRestaurantById(this.restaurantID).then((data: any) => {
         this.listinfo[2].value = data.cash
+        data.payment_information = data.payment_information.split("-")
+        this.paymentInfo = data.payment_information
+        console.log(this.paymentInfo);
       })
       this.API.getMostOrdered(this.restaurantID, formattedStartDate, formattedEndDate, 10).then((data: any) => {
         this.mostOrder = data
@@ -119,6 +126,46 @@ export class RestaurantDetailComponent {
 
   }
 
+  LoadData(page: number) {
+    this.orderReport = []
+    this.route.queryParams.subscribe(params => {
+      var startDate = new Date();
+      var endDate = new Date();
+      var dayNum = 7
+      this.restaurantID = params['restaurantid']
+      startDate.setDate(startDate.getDate() - dayNum);
+
+      const formattedStartDate = startDate.toISOString().split('T')[0];
+      const formattedEndDate = endDate.toISOString().split('T')[0];
+      this.API.getFoodOrderBySupplierForAdmin(this.restaurantID, page, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
+        console.log(data);
+        
+        this.OrderReportPaging = data.totalPages
+        for (let item of data.content) {
+          if (item.status == "hoàn thành") {
+            item.status = "completed"
+          } else if (item.status == "đang giao") {
+            item.status = "preparing"
+          } else if (item.status == "thất bại") {
+            item.status = "failed"
+          }
+          item.order_time = new Date(item.order_time).toISOString().split('T')[0];
+          this.orderReport.push(
+            {
+              customer: item.customer_name,
+              menu: "menu 1",
+              order_time: item.order_time,
+              amount: this.AddCommaToNumber(item.total_price),
+              avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
+              status: item.status,
+              payment_method: item.payment_method,
+              payment_status: item.payment_status
+            }
+          )
+        }
+      })
+    })
+  }
   AddCommaToNumber(number: any) {
     number = Number(Number(number).toFixed(2))
     number = number.toString();
@@ -141,6 +188,7 @@ export class RestaurantDetailComponent {
       if (window.confirm("Would you like to update Cash")) {
         this.API.putUpdateCash(amount, this.restaurantID).then((data: any) => {
           if (data.status == "success") {
+            debugger
             window.alert("Amount is updated!")
             location.reload()
           }
@@ -177,7 +225,7 @@ export class RestaurantDetailComponent {
             {
               customer: item.customer_name,
               menu: "menu 1",
-              order_time:item.order_time,
+              order_time: item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
               avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
@@ -198,7 +246,7 @@ interface Order {
   avatar: string;
   status: string;
   payment_method: string;
-  order_time:string;
+  order_time: string;
   payment_status: number
 }
 

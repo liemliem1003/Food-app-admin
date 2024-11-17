@@ -107,7 +107,7 @@ export class ApiserviceComponent {
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       },
       putUpdateCash: (amount:number,id:any) =>{
-        var str = "supplier_info/update_cash/"
+        var str = "supplier_info/update_cash_for_admin/"
         const api = this.apiUrl + str + `${id}?cash=${amount}`
         return HTTPRequest.put(api, {},this.httpOptions).toPromise();
 
@@ -158,6 +158,22 @@ export class ApiserviceComponent {
         var str = "users/block/"
         const api = this.apiUrl + str + id + "/" + status
         return HTTPRequest.put(api, {},this.httpOptions).toPromise();
+      }
+    }
+  }
+  WithdrawAPI(){
+    const HTTPRequest = this.http;
+    return {
+      getAllWithDraw:(page: number, limit: number) =>{
+        var str ="supplier_info/get_all_withdraw"
+        const api = this.apiUrl + str + `?size=${limit}&page=${page}`
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+      },
+      putUpdateWithDrawStatus:(id:number,status:number) =>{
+        var str ="supplier_infor/update_withdraw_status/" + id
+        const api = this.apiUrl + str + `?status=${status}`
+        return HTTPRequest.put(api, {},this.httpOptions).toPromise();
+
       }
     }
   }

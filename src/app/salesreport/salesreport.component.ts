@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ApiserviceComponent } from '../apiservice/apiservice.component';
 
 @Component({
   selector: 'app-salesreport',
@@ -10,28 +11,14 @@ import { Component } from '@angular/core';
 })
 export class SalesreportComponent {
 
+  page = {
+    curPage: 0,
+    limit: 5,
+    totalPage: 1
+  }
+
   customerDetails: any = [
-    {
-      id: "RZ17308",
-      name: "Name 1",
-      date: "13/01/2024",
-      amount: 5000,
-      status: 0
-    },
-    {
-      id: "RZ17307",
-      name: "Name 2",
-      date: "22/01/2024",
-      amount: 5000,
-      status: 1
-    },
-    {
-      id: "RE173012",
-      name: "Name 3",
-      date: "05/01/2024",
-      amount: 10000,
-      status: 2
-    },
+
   ]
   customerDetailsStatus: any = {
     0: {
@@ -39,11 +26,11 @@ export class SalesreportComponent {
       color: "#C49D50"
     },
     1: {
-      status: "Delivered",
+      status: "Paid",
       color: "#73FFCC"
     },
     2: {
-      status: "Paid",
+      status: "Unpaid",
       color: "#6F82E8"
     }
   }
@@ -129,44 +116,44 @@ export class SalesreportComponent {
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   years = []
   calendar: any = {
-    days:[],
+    days: [],
     currentDay: new Date()
   }
 
-  showDateSelector:boolean=true
+  showDateSelector: boolean = true
 
-  circleChart:any = {
+  circleChart: any = {
     shopName: "petshop.com",
     description: "(Oreo)",
-    logo:"assets/Image/SaleReport/Logo.png",
-    options:[
+    logo: "assets/Image/SaleReport/Logo.png",
+    options: [
       {
-        name:"Facebook",
+        name: "Facebook",
         value: 20,
         color: "#FFC9C0"
       },
       {
-        name:"Youtube",
+        name: "Youtube",
         value: 10,
         color: "#45F6D4"
       }
       ,
       {
-        name:"Instagram",
+        name: "Instagram",
         value: 10,
         color: "#FE7070"
       },
       {
-        name:"Website",
+        name: "Website",
         value: 20,
         color: "#D1F5A6"
       }
     ],
-    moreDetailsOptions:[
+    moreDetailsOptions: [
       {
         title: "Total intake",
-        value:1500000,
-        specialValue:0,
+        value: 1500000,
+        specialValue: 0,
       },
       {
         title: "New Customers",
@@ -176,32 +163,35 @@ export class SalesreportComponent {
       {
         title: "Repeat Customers",
         value: 1500,
-        specialValue:2220,
+        specialValue: 2220,
       },
       {
         title: "Total Revenue",
         value: 130000,
-        specialValue:0,
+        specialValue: 0,
       }
     ],
-    visitorOptions:[
+    visitorOptions: [
       {
-        title:"Online Visitor",
-        amount:20000,
-        percentage:90
+        title: "Online Visitor",
+        amount: 20000,
+        percentage: 90
       },
       {
-        title:"Offline Visitor",
-        amount:7000,
-        percentage:50
+        title: "Offline Visitor",
+        amount: 7000,
+        percentage: 50
       }
     ]
   }
 
+  constructor(private apiService: ApiserviceComponent) { }
+  API: any = this.apiService.WithdrawAPI()
   ngOnInit() {
     this.UpdateSale()
-    this.UpdateCalendar(this.calendar.currentDay.getMonth()+1,this.calendar.currentDay.getFullYear())
+    this.UpdateCalendar(this.calendar.currentDay.getMonth() + 1, this.calendar.currentDay.getFullYear())
     this.UpdateCircleChart()
+    this.LoadData(this.page.curPage, this.page.limit)
   }
 
   AddSpaceToNumber(number: any) {
@@ -258,82 +248,115 @@ export class SalesreportComponent {
     var days = []
     var date = new Date(year, month - 1, 1)
     let lastDay = new Date(year, month, 0).getDate()
-    if (date.getDay()!=0) {
+    if (date.getDay() != 0) {
       for (let i = 0; i < date.getDay(); i++) {
-        var day = new Date(year, month-2, 0).getDate() -date.getDay() + i
+        var day = new Date(year, month - 2, 0).getDate() - date.getDay() + i
         days.push({
-          value: new Date(year,month-2,day).toString().split(" "),
-          status:0
+          value: new Date(year, month - 2, day).toString().split(" "),
+          status: 0
         })
       }
     }
     for (let day = 1; day <= lastDay; day++) {
       days.push({
         value: new Date(year, month - 1, day).toDateString().split(" "),
-        status:1
-      }); 
+        status: 1
+      });
     }
-    if(new Date(year, month, 0).getDay()!= 6){
-      for (let i = 0; i < 6-new Date(year, month, 0).getDay(); i++) {
+    if (new Date(year, month, 0).getDay() != 6) {
+      for (let i = 0; i < 6 - new Date(year, month, 0).getDay(); i++) {
         days.push({
           value: new Date(year, month + 1, i).toString().split(" "),
-          status:0
+          status: 0
         })
       }
     }
     this.calendar.days = days
   }
-  SelectCalendar(up:boolean){
+  SelectCalendar(up: boolean) {
     var currentYear = this.calendar.currentDay.getFullYear()
     var currentMonth = this.calendar.currentDay.getMonth()
-    up ? this.calendar.currentDay = new Date(currentYear, currentMonth + 2,0): this.calendar.currentDay = new Date(currentYear, currentMonth,0)
-    this.UpdateCalendar(this.calendar.currentDay.getMonth()+1,this.calendar.currentDay.getFullYear())
+    up ? this.calendar.currentDay = new Date(currentYear, currentMonth + 2, 0) : this.calendar.currentDay = new Date(currentYear, currentMonth, 0)
+    this.UpdateCalendar(this.calendar.currentDay.getMonth() + 1, this.calendar.currentDay.getFullYear())
 
   }
 
-  UpdateCircleChart(){
+  UpdateCircleChart() {
     var total = 0
     var rotate = 45
     for (let i = 0; i < this.circleChart.options.length; i++) {
       total += this.circleChart.options[i].value
     }
     for (let i = 0; i < this.circleChart.options.length; i++) {
-      var percentage = this.circleChart.options[i].value/total
+      var percentage = this.circleChart.options[i].value / total
       this.circleChart.options[i].rotate = rotate
       this.circleChart.options[i].percentage = percentage
-      rotate += percentage*360
+      rotate += percentage * 360
       var polygon = "polygon(50% 50%, 0 0, "
       while (true) {
         if (percentage <= 0.25) {
-            polygon +=`${(percentage/0.25)*100}%  0`
-            break;
-          }else{
-            polygon += "100% 0, "
-          }
-          if(percentage > 0.25 && percentage <= 0.5){
-            polygon +=`100% ${(percentage/0.5)*100}%`
-            break;
-          }else{
-            polygon += "100% 100%, "
-          }
-          if(percentage > 0.5 && percentage <= 0.75){
-            polygon += `${(1 - percentage/0.75)*100}% 100%`
-            break;
-          }else{
-            polygon+= "0 100%, "
-          }
-    
-          if (percentage > 0.75) {
-            polygon += `0 ${(1 - percentage/1)*100}%`
-            break;
-          }
+          polygon += `${(percentage / 0.25) * 100}%  0`
+          break;
+        } else {
+          polygon += "100% 0, "
+        }
+        if (percentage > 0.25 && percentage <= 0.5) {
+          polygon += `100% ${(percentage / 0.5) * 100}%`
+          break;
+        } else {
+          polygon += "100% 100%, "
+        }
+        if (percentage > 0.5 && percentage <= 0.75) {
+          polygon += `${(1 - percentage / 0.75) * 100}% 100%`
+          break;
+        } else {
+          polygon += "0 100%, "
+        }
+
+        if (percentage > 0.75) {
+          polygon += `0 ${(1 - percentage / 1) * 100}%`
+          break;
+        }
       }
 
-      var r = 226.7/2
+      var r = 226.7 / 2
       let test = (r * Math.sqrt(2) * Math.tan(percentage * 2 * Math.PI) / (Math.tan(percentage * 2 * Math.PI) + 1)) / (2 * r)
       polygon += ")"
       this.circleChart.options[i].polygon = polygon
     }
     this.circleChart.total = total
+  }
+  LoadData(page: number, limit: number) {
+    this.page.curPage = page
+    this.API.getAllWithDraw(this.page.curPage, limit).then((data: any) => {
+      console.log(data);
+
+      this.page.totalPage = data.totalPages
+      this.customerDetails = []
+      for (let i = 0; i < data.content.length; i++) {
+        this.customerDetails.push(
+          {
+            id: data.content[i].id,
+            name: data.content[i].supplier_name,
+            date: this.FormatDate(data.content[i].created_date),
+            amount: data.content[i].total_cash,
+            status: data.content[i].status
+          }
+        )
+      }
+    })
+  }
+  FormatDate(date: any) {
+    date = new Date(date)
+    date = date.toISOString().split('T')[0]
+    return date
+  }
+  UpdateDrawStatus(id: number, status: number) {
+    if (window.confirm("Would you like to update Status of withdraw id = " + id)) {
+      status == 2 ? status = 1 : status = 2
+      this.API.putUpdateWithDrawStatus(id, status).then((data: any) => {
+        console.log(data);
+      })
+    }
   }
 }

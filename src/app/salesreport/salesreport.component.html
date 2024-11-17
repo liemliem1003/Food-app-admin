@@ -2,7 +2,7 @@
     <div>
         <div class="general-report customer-details">
             <div class="report-header">
-                <div class="title">Customer Details</div>
+                <div class="title">Withdraw History</div>
                 <div class="group-button">
                     <button class="filter">
                         <img src="/assets/Image/SaleReport/Filter.png" alt>
@@ -18,8 +18,8 @@
                 <thead>
                     <tr>
                         <td>Id</td>
-                        <td>Customer</td>
-                        <td>Date</td>
+                        <td>Supplier</td>
+                        <td>Created date</td>
                         <td>Invoiced Amount</td>
                         <td>Status</td>
                     </tr>
@@ -31,7 +31,18 @@
                         <td>{{item.date}}</td>
                         <td>$ {{AddSpaceToNumber(item.amount)}}</td>
                         <td class="status"
-                            [style.--color]="customerDetailsStatus[item.status].color">{{customerDetailsStatus[item.status].status}}</td>
+                            [style.--color]="customerDetailsStatus[item.status].color">{{customerDetailsStatus[item.status].status}}
+                            <button (click)="UpdateDrawStatus(item.id,item.status)" class="update-status">Update Status</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><div class="paging">
+                                <button
+                                    *ngFor="let item of [].constructor(page.totalPage), let i = index"
+                                    (click)="LoadData(i,page.limit)"
+                                    [class]="i==page.curPage ? 'selected' : ''">{{i
+                                    + 1}}</button>
+                            </div></td>
                     </tr>
                 </tbody>
             </table>

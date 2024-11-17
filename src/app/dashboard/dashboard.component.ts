@@ -36,7 +36,7 @@ export class DashboardComponent {
     {
       icon: "/assets/Image/Dashboard/NewCostumersIcon.png",
       value: "0",
-      title: "New Costumers",
+      title: "New Customers",
       description: "0",
       class: "new-costumers"
     },

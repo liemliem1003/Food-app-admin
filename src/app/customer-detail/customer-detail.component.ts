@@ -66,6 +66,7 @@ export class CustomerDetailComponent {
     this.route.queryParams.subscribe(params => {
       this.API.getCustomerById(params['customerid']).then((data: any) => {
         this.userInfo = data
+        
       })
     })
   }
