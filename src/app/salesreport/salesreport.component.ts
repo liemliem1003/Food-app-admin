@@ -329,9 +329,9 @@ export class SalesreportComponent {
   LoadData(page: number, limit: number) {
     this.page.curPage = page
     this.API.getAllWithDraw(this.page.curPage, limit).then((data: any) => {
-      console.log(data);
-
       this.page.totalPage = data.totalPages
+      console.log(data);
+      
       this.customerDetails = []
       for (let i = 0; i < data.content.length; i++) {
         this.customerDetails.push(
@@ -340,7 +340,8 @@ export class SalesreportComponent {
             name: data.content[i].supplier_name,
             date: this.FormatDate(data.content[i].created_date),
             amount: data.content[i].total_cash,
-            status: data.content[i].status
+            status: data.content[i].status,
+            current_balance: data.content[i].current_balance
           }
         )
       }
@@ -352,10 +353,9 @@ export class SalesreportComponent {
     return date
   }
   UpdateDrawStatus(id: number, status: number) {
-    if (window.confirm("Would you like to update Status of withdraw id = " + id)) {
+    if (window.confirm("Would you like to update Status of withdraw id = " + id +"?")) {
       status == 2 ? status = 1 : status = 2
       this.API.putUpdateWithDrawStatus(id, status).then((data: any) => {
-        console.log(data);
         this.LoadData(this.page.curPage, this.page.limit)
       })
     }

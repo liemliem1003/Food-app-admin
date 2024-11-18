@@ -21,7 +21,9 @@
                         <td>Supplier</td>
                         <td>Created date</td>
                         <td>Invoiced Amount</td>
+                        <td>Current Balance</td>
                         <td>Status</td>
+                        <td>Function</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,10 +32,12 @@
                         <td>{{item.name}}</td>
                         <td>{{item.date}}</td>
                         <td>$ {{AddSpaceToNumber(item.amount)}}</td>
+                        <td>{{AddSpaceToNumber(item.current_balance)}}</td>
                         <td class="status"
                             [style.--color]="customerDetailsStatus[item.status].color">{{customerDetailsStatus[item.status].status}}
-                            <button (click)="UpdateDrawStatus(item.id,item.status)" class="update-status">Update Status</button>
+                            
                         </td>
+                        <td><button (click)="UpdateDrawStatus(item.id,item.status)" class="update-status">Update Status</button></td>
                     </tr>
                     <tr>
                         <td colspan="5"><div class="paging">

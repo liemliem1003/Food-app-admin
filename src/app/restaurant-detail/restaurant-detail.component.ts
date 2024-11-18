@@ -95,7 +95,7 @@ export class RestaurantDetailComponent {
               menu: "menu 1",
               order_time: item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
-              avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
+              avatar: item.img_url ? item.img_url : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
               payment_status: item.payment_status
@@ -107,7 +107,6 @@ export class RestaurantDetailComponent {
         this.listinfo[2].value = data.cash
         data.payment_information = data.payment_information.split("-")
         this.paymentInfo = data.payment_information
-        console.log(this.paymentInfo);
       })
       this.API.getMostOrdered(this.restaurantID, formattedStartDate, formattedEndDate, 10).then((data: any) => {
         this.mostOrder = data
@@ -141,6 +140,8 @@ export class RestaurantDetailComponent {
         console.log(data);
         
         this.OrderReportPaging = data.totalPages
+        console.log(data);
+        
         for (let item of data.content) {
           if (item.status == "hoàn thành") {
             item.status = "completed"
@@ -156,7 +157,7 @@ export class RestaurantDetailComponent {
               menu: "menu 1",
               order_time: item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
-              avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
+              avatar: item.img_url ? item.img_url : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
               payment_status: item.payment_status
@@ -227,7 +228,7 @@ export class RestaurantDetailComponent {
               menu: "menu 1",
               order_time: item.order_time,
               amount: this.AddCommaToNumber(item.total_price),
-              avatar: item.avatar ? item.avatar : "/assets/Image/RestaurantDetails/Avatar.png",
+              avatar: item.img_url ? item.img_url : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
               payment_status: item.payment_status
