@@ -79,6 +79,7 @@ export class RestaurantDetailComponent {
       const formattedStartDate = startDate.toISOString().split('T')[0];
       const formattedEndDate = endDate.toISOString().split('T')[0];
       this.API.getFoodOrderBySupplierForAdmin(this.restaurantID, 0, 10, true, formattedStartDate, formattedEndDate).then((data: any) => {
+        console.log(data);
         this.OrderReportPaging = data.totalPages
         for (let item of data.content) {
           if (item.status == "hoàn thành") {
@@ -98,7 +99,8 @@ export class RestaurantDetailComponent {
               avatar: item.img_url ? item.img_url : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
-              payment_status: item.payment_status
+              payment_status: item.payment_status,
+              discount:item.discount
             }
           )
         }
@@ -160,7 +162,8 @@ export class RestaurantDetailComponent {
               avatar: item.img_url ? item.img_url : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
-              payment_status: item.payment_status
+              payment_status: item.payment_status,
+              discount:item.discount
             }
           )
         }
@@ -231,7 +234,8 @@ export class RestaurantDetailComponent {
               avatar: item.img_url ? item.img_url : "/assets/Image/RestaurantDetails/Avatar.png",
               status: item.status,
               payment_method: item.payment_method,
-              payment_status: item.payment_status
+              payment_status: item.payment_status,
+              discount:item.discount
             }
           )
         }
@@ -248,7 +252,9 @@ interface Order {
   status: string;
   payment_method: string;
   order_time: string;
-  payment_status: number
+  payment_status: number;
+  discount: number
+
 }
 
 interface MostOrder {
