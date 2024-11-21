@@ -95,6 +95,12 @@ export class ApiserviceComponent {
         const api = this.apiUrl + str
         return HTTPRequest.get(api, this.httpOptions).toPromise();
       }
+      ,
+      get_revenue_monthly: (month:number, year:number) => {
+        var str = `report/get_revenue_monthly?month=${month}&year=${year}`
+        const api = this.apiUrl + str
+        return HTTPRequest.get(api, this.httpOptions).toPromise();
+      },
     }
   }
   RestaurantAPI() {

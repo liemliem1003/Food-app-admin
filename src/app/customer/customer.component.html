@@ -6,6 +6,7 @@
                 <tr>
                     <td>Id</td>
                     <td>Name</td>
+                    <td>Phone</td>
                     <td>Email</td>
                     <td>Status</td>
                 </tr>
@@ -14,9 +15,13 @@
                 <tr *ngFor="let item of listCustomers" routerLink="/customer-detail"
                 [queryParams]="{ customerid: item.id }">
                     <td>{{item.id}}</td>
-                    <td>{{item.fullName}}</td>
+                    <td>
+                        <div><img [src]="item.imgUrl ? item.imgUrl :'/assets/Image/RestaurantDetails/TotalCustomerIcon.png'" alt="">
+                            {{item.fullName}}</div></td>
+                    <td>{{item.phoneNumber}}</td>
+
                     <td>{{item.email}}</td>
-                    <td>{{item.active==true? "Hoạt động" : "Không Hoạt động"}}</td>
+                    <td [class] = "item.active? 'active' : 'deactive'">{{item.active==true? "Hoạt động" : "Không Hoạt động"}}</td>
                 </tr>
             </tbody>
         </table>

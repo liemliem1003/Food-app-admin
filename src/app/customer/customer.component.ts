@@ -26,6 +26,8 @@ export class CustomerComponent {
     this.paging.currPage = page
     this.API.getAllCustomers("",page,this.paging.limit).then((data:any)=>{
       this.listCustomers = data.content
+      console.log(data);
+      
       this.paging.numberOfPage=data.totalPages
     })
   }

@@ -10,7 +10,9 @@ import { ApiserviceComponent } from '../apiservice/apiservice.component';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
+  monthly:any;
+  month:number =0;
+  year:number =0;
   todaySales: any = [
     {
       icon: "/assets/Image/Dashboard/TotalSalesIcon.png",
@@ -46,7 +48,7 @@ export class DashboardComponent {
       title: "Download",
       description: "0",
       class: "total-sales"
-    }
+    },
   ]
 
   totalRevenue: any = {
@@ -263,6 +265,12 @@ export class DashboardComponent {
     this.UpdateColumnssOfTargetVsReality()
     this.UpdateVolumeVsServiceLevel()
 
+    var date = new Date()
+    this.month = date.getMonth() +1
+    this.year = date.getFullYear()
+
+
+    this.GetRevenueMonthly(this.month,this.year);
   }
   async APIInitialFunction() {
     var currentDate = new Date()
@@ -381,5 +389,48 @@ export class DashboardComponent {
   }
   NumberToFix(number:number){
     return Number(number).toFixed(1)
+  }
+  GetRevenueMonthly(month: number, year: number) {
+    this.API.get_revenue_monthly(month, year).then((data: any) => {
+      var lastMonth = month - 1
+      if (lastMonth = 0) {
+        lastMonth = 12
+        year--
+      }
+      this.API.get_revenue_monthly(lastMonth, year).then((data2: any) => {
+        var obj = [
+          {
+            icon: "/assets/Image/Dashboard/TotalSalesIcon.png",
+            value: data.totalRevenue,
+            title: "Total Sales",
+            description: (data.totalRevenue - data2.totalRevenue)/data2.totalRevenue + "%",
+            class: "total-sales"
+          },
+          {
+            icon: "/assets/Image/Dashboard/TotalOrdersIcon.png",
+            value: data.totalOrders,
+            title: "Total Orders",
+            description: (data.totalOrders - data2.totalOrders)/data2.totalOrders + "%",
+            class: "total-orders"
+          },
+          {
+            icon: "/assets/Image/Dashboard/ProductsSoldIcon.png",
+            value: data.totalProductsSold,
+            title: "Products Sold",
+            description: (data.totalProductsSold - data2.totalProductsSold)/data2.totalProductsSold + "%",
+            class: "products-sold"
+          },
+          {
+            icon: "/assets/Image/Dashboard/NewCostumersIcon.png",
+            value: data.totalUsers,
+            title: "New Customers",
+            description: (data.totalUsers - data2.totalUsers)/data2.totalUsers + "%",
+            class: "new-costumers"
+          },
+        ]
+        this.monthly = obj
+      })
+    })
+
   }
 }

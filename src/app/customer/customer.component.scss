@@ -4,7 +4,7 @@
     margin-left: 51px;
     margin-top: 35px;
     border-radius: 20px;
-    width: 645px;
+    width: 90%;
     padding: 10px 0 20px;
 }
 
@@ -27,10 +27,23 @@
 .detail-container table td {
     margin: 10px;
     border-bottom: solid 1px #8A8A8A;
+    
+}
+
+.detail-container table td div{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.detail-container table td img{
+    width: 50px;
+    margin-right: 20px;
 }
 
 .detail-container table tbody tr {
     cursor: pointer;
+    font-family: Arial!important;
 }
 
 .detail-container table tbody tr:hover {
@@ -63,4 +76,14 @@
 
 .paging button.selected {
     border-radius: 10px;
+}
+
+.active{
+    color: green;
+    font-weight: bold;
+}
+
+.deactive{
+    color: red;
+    font-weight: bold;
 }

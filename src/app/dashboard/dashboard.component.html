@@ -1,8 +1,8 @@
 <div class="container">
     <div class="today-sales">
         <div class="today-sales-header">
-            <div class="text">Today's Sales
-                <div>Sales Summery</div>
+            <div class="text">Sales report
+                <div>Sales Summary</div>
             </div>
             <button>
                 <img src="assets/Image/Dashboard/ExportIcon.png" alt>
@@ -13,10 +13,30 @@
             <div [class]="item.class+' content-item'"
                 *ngFor="let item of todaySales, let i = index">
                 <img [src]="item.icon" alt class="icon">
-                <div class="value">{{item.value}}</div>
+                <div class="value">{{FormatNumber(item.value)}}</div>
                 <div class="title">{{item.title}}</div>
                 <div class="description" *ngIf="i!=4">{{item.description}} from
                     yesterday</div>
+            </div>
+        </div>
+    </div>
+    <div class="today-sales">
+        <div class="today-sales-header">
+            <div class="text">Monthly Report {{month}}/{{year}}
+                <div>Sales Summary</div>
+            </div>
+            <button>
+                <img src="assets/Image/Dashboard/ExportIcon.png" alt>
+                Export
+            </button>
+        </div>
+        <div class="contents">
+            <div [class]="item.class+' content-item'"
+                *ngFor="let item of monthly, let i = index">
+                <img [src]="item.icon" alt class="icon">
+                <div class="value">{{FormatNumber(item.value)}}</div>
+                <div class="title">{{item.title}}</div>
+                
             </div>
         </div>
     </div>
